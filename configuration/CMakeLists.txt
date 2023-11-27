@@ -10,6 +10,7 @@ execute_process(COMMAND
     bison -o ${CMAKE_CURRENT_BINARY_DIR}/config_parser.cpp ${CMAKE_CURRENT_SOURCE_DIR}/config_parser.y)
 
 add_executable(configuration
+    ${CMAKE_CURRENT_BINARY_DIR}/main.cpp
     ${CMAKE_CURRENT_BINARY_DIR}/config_lexer.cpp
     ${CMAKE_CURRENT_BINARY_DIR}/config_parser.cpp)
 

@@ -93,8 +93,3 @@ pin_names: pin_name
 pin_name: TIDENTIFIER;
 
 %%
-
-int main(int argc, char **argv) {
-  printf("> ");
-  return yyparse();
-}

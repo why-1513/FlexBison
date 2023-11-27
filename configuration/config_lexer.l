@@ -10,6 +10,19 @@
 #define SAVE_TOKEN yylval.string = new std::string(yytext)
 #define TOKEN(t) ( yylval.token = t)
 
+static FILE* yyparse_file_ptr;
+
+void yyparse_init(const char* filename)
+{
+    yyparse_file_ptr = fopen(filename, "r");
+	yyin = yyparse_file_ptr;
+}
+
+void yyparse_cleanup()
+{
+	fclose(yyparse_file_ptr);
+}
+
 %}
 
 %option noyywrap
