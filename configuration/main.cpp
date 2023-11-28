@@ -15,6 +15,7 @@ int main(int argc, char **argv) {
   config_name = userInput.c_str();
 
   yyparse_init(config_name);
+  // yyparse_init(*(argv+1));
   yyparse();
   yyparse_cleanup();
   return 0;
