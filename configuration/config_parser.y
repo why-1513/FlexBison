@@ -3,6 +3,8 @@
 #include <fstream>
 #include <string>
 #include "config_parser.hpp"
+#include "ASTNodes.h"
+
 extern int yylex();
 void yyerror(const char* s)
 {
@@ -17,7 +19,7 @@ void yyerror(const char* s)
 	
 }
 
-%token <string> DFPN DFPS PSTE CONF DFGP PSLC PSSL NOOP HEADERROW
+%token <string> DFPN DFPS PSTE CONF DFGP PSLC PSSL NOOP hp93000
 %token <string> TIDENTIFIER TDOUBLE TINTEGER TLITERAL
 %token <token> TCOMMA TLPAREN TRPAREN TMINUS
 
@@ -31,7 +33,7 @@ config_commands: config_commands config_command
 			   | config_command
 			   ;
 
-config_command: HEADERROW TCOMMA filetype TCOMMA version_93k
+config_command: hp93000 TCOMMA filetype TCOMMA version_93k
 			  | DFPN channel_no TCOMMA pinNo TCOMMA pin
 			  | DFPS dps_channel TCOMMA polarity TCOMMA pin
 			  | PSTE sites

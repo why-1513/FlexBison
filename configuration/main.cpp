@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include "ASTNodes.h"
 
 extern int yyparse();
 extern void yyparse_init(const char* filename);

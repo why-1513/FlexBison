@@ -6,6 +6,7 @@
 
 #include <stdio.h>
 #include "config_parser.hpp"
+#include "ASTNodes.h"
 
 #define SAVE_TOKEN yylval.string = new std::string(yytext)
 #define TOKEN(t) ( yylval.token = t)
@@ -37,7 +38,7 @@ void yyparse_cleanup()
 "PSLC"                  puts("PSLC"); return TOKEN(PSLC);
 "PSSL"                  puts("PSSL"); return TOKEN(PSSL);
 "NOOP"                  puts("NOOP"); return TOKEN(NOOP);
-"hp93000"               puts("HEADERROW"); return TOKEN(HEADERROW);
+"hp93000"               puts("hp93000"); return TOKEN(hp93000);
 \"(.*?)\"               SAVE_TOKEN; puts(yytext); return TOKEN(TLITERAL);
 [a-zA-Z][a-zA-Z0-9_]*	SAVE_TOKEN; puts(yytext); return TOKEN(TIDENTIFIER);
 [0-9]+\.[0-9]*			SAVE_TOKEN; puts(yytext); return TOKEN(TDOUBLE);
