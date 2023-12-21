@@ -28,15 +28,24 @@ std::shared_ptr<FileHeader> configheader = std::make_shared<FileHeader>();
 %token <token> TCOMMA TLPAREN TRPAREN TMINUS
 
 %type <fileheader> configuration
+%type <string> config
 
 %start configuration
 %defines
 
 %%
-configuration: hp93000 TCOMMA TIDENTIFIER TCOMMA TDOUBLE{
-    std::string aaaa;
-	aaaa = *$1;
-	std::cout<<aaaa;
+configuration: hp93000 TCOMMA config TCOMMA TDOUBLE{
+    std::cout << "hello" << std::endl;
+	std::cout << $3 << std::endl;
+	std::cout << "hihi" << std::endl;
+	std::string aaaa;
+	std::cout << "xxxxxxx" << std::endl;
+	aaaa = *$3;
+	std::cout << "hohohoho" << std::endl;
+	std::cout << aaaa << std::endl;
+	std::cout << "aaaaaaaaaaaaa" << std::endl;
 };
-
+config:TIDENTIFIER{
+	$$ = $1;
+};
 %%
