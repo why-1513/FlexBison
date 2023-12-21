@@ -12,12 +12,13 @@ void yyerror(const char* s)
 {
 	printf("Error: %s\n", s);
 }
-std::shared_ptr<FileHeader> configheader = std::make_shared<FileHeader>();
+std::shared_ptr<ConfigFile> configfile = std::make_shared<ConfigFile>();
 
 %}
 %union
 {
-	class FileHeader* fileheader;
+
+	class ConfigFile;
 	std::string* string;
 	int token;
 	
@@ -27,25 +28,30 @@ std::shared_ptr<FileHeader> configheader = std::make_shared<FileHeader>();
 %token <string> TIDENTIFIER TDOUBLE TINTEGER TLITERAL
 %token <token> TCOMMA TLPAREN TRPAREN TMINUS
 
-%type <fileheader> configuration
-%type <string> config
+%type <string> channel_no pinNo pin_name
 
-%start configuration
+%start config_file
 %defines
 
 %%
-configuration: hp93000 TCOMMA config TCOMMA TDOUBLE{
-    std::cout << "hello" << std::endl;
-	std::cout << $3 << std::endl;
-	std::cout << "hihi" << std::endl;
-	std::string aaaa;
-	std::cout << "xxxxxxx" << std::endl;
-	aaaa = *$3;
-	std::cout << "hohohoho" << std::endl;
-	std::cout << aaaa << std::endl;
-	std::cout << "aaaaaaaaaaaaa" << std::endl;
-};
-config:TIDENTIFIER{
-	$$ = $1;
-};
+config_file: config_commands NOOP TLITERAL TCOMMA TCOMMA TCOMMA;
+
+config_commands: config_commands config_command
+			   | config_command
+			   ;
+
+config_command: hp93000 TCOMMA TIDENTIFIER TCOMMA TDOUBLE{
+	configfile->filetype = *$3;
+	}
+	| DFPN channel_no TCOMMA pinNo TCOMMA TLPAREN pin_name TRPAREN{
+		configfile->DFPN_channel_no.push_back(*$2);
+		configfile->DFPN_pinNo.push_back(*$4);
+		configfile->DFPN_pin.push_back(*$7);
+	}
+	;
+
+channel_no: TINTEGER;
+pinNo: TLITERAL;
+pin_name: TIDENTIFIER;
+
 %%
