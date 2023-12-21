@@ -24,6 +24,9 @@ int main(int argc, char **argv) {
   std::cout << configfile->filetype << std::endl;
   std::cout << configfile->DFPN_channel_no[0];
   std::cout << configfile->DFPN_pinNo[0];
-  std::cout << configfile->DFPN_pin[0];
+  std::cout << configfile->DFPN_pin[0]<< std::endl;
+  std::cout << configfile->DFPN_channel_no[1];
+  std::cout << configfile->DFPN_pinNo[1];
+  std::cout << configfile->DFPN_pin[1]<< std::endl;
   return 0;
 }
