@@ -22,11 +22,11 @@ int main(int argc, char **argv) {
   yyparse_cleanup();
 
   std::cout << configfile->filetype << std::endl;
-  std::cout << configfile->DFPN_channel_no[0];
-  std::cout << configfile->DFPN_pinNo[0];
-  std::cout << configfile->DFPN_pin[0]<< std::endl;
-  std::cout << configfile->DFPN_channel_no[1];
-  std::cout << configfile->DFPN_pinNo[1];
-  std::cout << configfile->DFPN_pin[1]<< std::endl;
+  std::cout << configfile->dfpn->channel_no[0];
+  std::cout << configfile->dfpn->pinNo[0];
+  std::cout << configfile->dfpn->pin[0]<< std::endl;
+  std::cout << configfile->dfpn->channel_no[1];
+  std::cout << configfile->dfpn->pinNo[1];
+  std::cout << configfile->dfpn->pin[1]<< std::endl;
   return 0;
 }

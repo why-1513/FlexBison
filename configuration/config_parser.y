@@ -41,12 +41,10 @@ config_commands: config_commands config_command
 			   ;
 
 config_command: hp93000 TCOMMA TIDENTIFIER TCOMMA TDOUBLE{
-	configfile->filetype = *$3;
+	configfile->setFileType(*$3);
 	}
 	| DFPN channel_no TCOMMA pinNo TCOMMA TLPAREN pin_name TRPAREN{
-		configfile->DFPN_channel_no.push_back(*$2);
-		configfile->DFPN_pinNo.push_back(*$4);
-		configfile->DFPN_pin.push_back(*$7);
+		configfile->dfpn->addDFPNData(*$2,*$4,*$7);
 	}
 	;
 
