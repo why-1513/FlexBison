@@ -29,7 +29,7 @@ std::vector<std::string>* pinlist;
 %token <string> TIDENTIFIER TDOUBLE TINTEGER TLITERAL
 %token <token> TCOMMA TLPAREN TRPAREN TMINUS
 
-%type <string> channel_no pinNo dps_channel polarity sites pin_type pin_oper_mode conf_context
+%type <string> channel_no pinNo dps_channel polarity sites pin_type pin_oper_mode conf_context pin_group
 %type <string> pin_name 
 
 %start config_file
@@ -54,6 +54,9 @@ config_command: hp93000 TCOMMA TIDENTIFIER TCOMMA TDOUBLE{
 		configfile->pste->setSites(*$2);
 	}
 	| CONF conf_parameters
+	| DFGP pin_type TCOMMA TLPAREN pin_names TRPAREN TCOMMA TLPAREN pin_group TRPAREN{
+		configfile->dfgp->addDFGPData(*$2,*pinlist,*$9);
+	}
 	;
 
 conf_parameters: pin_type TCOMMA pin_oper_mode TCOMMA TLPAREN pin_names TRPAREN{
@@ -70,6 +73,7 @@ sites: TINTEGER;
 conf_context: TLITERAL
 pin_type: TIDENTIFIER;
 pin_oper_mode: TIDENTIFIER;
+pin_group:TIDENTIFIER;
 
 pin_names: pin_names TCOMMA pin_name {
 	pinlist->push_back(*$3);

@@ -39,6 +39,11 @@ int main(int argc, char **argv) {
   std::cout << configfile->conf->pin_type[1];
   std::cout << configfile->conf->pin_oper_mode[1]<< std::endl;
   configfile->conf->printPinList();
-
+  std::cout << configfile->dfgp->pin_type[0];
+  std::cout << configfile->dfgp->pin_group[0]<< std::endl;
+  std::cout << configfile->dfgp->pin_type[1];
+  std::cout << configfile->dfgp->pin_group[1]<< std::endl;
+  configfile->dfgp->printPinList();
+  
   return 0;
 }

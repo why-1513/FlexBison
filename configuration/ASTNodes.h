@@ -6,7 +6,6 @@
 #include <string>
 
 
-
 class ConfigFile {
 public:
     ConfigFile() {}
@@ -72,16 +71,42 @@ public:
         }
 
         void printPinList() const {
-        for (const auto& pinGroup : pinlist) {
-            for (const auto& pin : pinGroup) {
-                std::cout << pin << " ";
+            for (const auto& pinGroup : pinlist) {
+                for (const auto& pin : pinGroup) {
+                    std::cout << pin << " ";
+                }
+                std::cout << std::endl;
             }
-            std::cout << std::endl;
         }
-    }
+
     };
 
     std::shared_ptr<CONF> conf = std::make_shared<CONF>();
+
+    class DFGP {
+    public:
+        std::vector<std::string> pin_type;
+        std::vector<std::string> pin_group;
+        std::vector<std::vector<std::string>> pinlist;
+
+        void addDFGPData(const std::string& infoPinType, const std::vector<std::string>& infoPinList, const std::string& infoPinGroup) {
+            pin_type.push_back(infoPinType);
+            pin_group.push_back(infoPinGroup);
+            pinlist.push_back(infoPinList);
+        }
+
+        void printPinList() const {
+            for (const auto& pinGroup : pinlist) {
+                for (const auto& pin : pinGroup) {
+                    std::cout << pin << " ";
+                }
+                std::cout << std::endl;
+            }
+        }
+    
+    };
+
+    std::shared_ptr<DFGP> dfgp = std::make_shared<DFGP>();
 
 };
 
