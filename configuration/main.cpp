@@ -21,29 +21,17 @@ int main(int argc, char **argv) {
   yyparse();
   yyparse_cleanup();
 
-  std::cout << configfile->filetype << std::endl;
-  std::cout << configfile->dfpn->channel_no[0];
-  std::cout << configfile->dfpn->pinNo[0];
-  std::cout << configfile->dfpn->pin[0]<< std::endl;
-  std::cout << configfile->dfpn->channel_no[1];
-  std::cout << configfile->dfpn->pinNo[1];
-  std::cout << configfile->dfpn->pin[1]<< std::endl;
-  std::cout << configfile->dfps->dps_channel[0];
-  std::cout << configfile->dfps->polarity[0];
-  std::cout << configfile->dfps->pin[0]<< std::endl;
-  std::cout << configfile->pste->sites <<std::endl;
-  std::cout << configfile->conf->context[0];
-  std::cout << configfile->conf->pin_type[0];
-  std::cout << configfile->conf->pin_oper_mode[0]<< std::endl;
-  std::cout << configfile->conf->context[1];
-  std::cout << configfile->conf->pin_type[1];
-  std::cout << configfile->conf->pin_oper_mode[1]<< std::endl;
+  configfile->dfpn->printDFPNData();
+  configfile->dfps->printDFPSData();
+  configfile->pste->printPSTEData();
+  configfile->conf->printCONFData();
   configfile->conf->printPinList();
-  std::cout << configfile->dfgp->pin_type[0];
-  std::cout << configfile->dfgp->pin_group[0]<< std::endl;
-  std::cout << configfile->dfgp->pin_type[1];
-  std::cout << configfile->dfgp->pin_group[1]<< std::endl;
+  configfile->dfgp->printDFGPData();
   configfile->dfgp->printPinList();
+  configfile->pslc->printPSLCData();
+  configfile->pslc->printPinList();
+  configfile->pssl->printPSSLData();
+  configfile->pssl->printPinList();
   
   return 0;
 }

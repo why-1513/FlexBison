@@ -41,6 +41,8 @@ void yyparse_cleanup()
 "hp93000"               puts("hp93000"); return TOKEN(hp93000);
 [0-9]+\.[0-9]*			SAVE_TOKEN; puts(yytext); return TDOUBLE;
 [0-9]+  				SAVE_TOKEN; puts(yytext); return TINTEGER;
+-?[0-9]+\.[0-9]*		SAVE_TOKEN; puts(yytext); return TNEGDOUBLE;
+-?[0-9]+				SAVE_TOKEN; puts(yytext); return TNEGINTEGER;
 [a-zA-Z][a-zA-Z0-9_]*	SAVE_TOKEN; puts(yytext); return TIDENTIFIER;
 \"(.*?)\"               SAVE_TOKEN; puts(yytext); return TLITERAL;
 "-"                     puts("TMINUS"); return TOKEN(TMINUS);
