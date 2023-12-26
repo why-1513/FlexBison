@@ -39,10 +39,10 @@ void yyparse_cleanup()
 "PSSL"                  puts("PSSL"); return TOKEN(PSSL);
 "NOOP"                  puts("NOOP"); return TOKEN(NOOP);
 "hp93000"               puts("hp93000"); return TOKEN(hp93000);
-\"(.*?)\"               SAVE_TOKEN; puts(yytext); return TLITERAL;
-[a-zA-Z][a-zA-Z0-9_]*	SAVE_TOKEN; puts(yytext); return TIDENTIFIER;
 [0-9]+\.[0-9]*			SAVE_TOKEN; puts(yytext); return TDOUBLE;
 [0-9]+  				SAVE_TOKEN; puts(yytext); return TINTEGER;
+[a-zA-Z][a-zA-Z0-9_]*	SAVE_TOKEN; puts(yytext); return TIDENTIFIER;
+\"(.*?)\"               SAVE_TOKEN; puts(yytext); return TLITERAL;
 "-"                     puts("TMINUS"); return TOKEN(TMINUS);
 ","                     puts("TCOMMA"); return TOKEN(TCOMMA);
 "("                     puts("TLPAREN"); return TOKEN(TLPAREN);
