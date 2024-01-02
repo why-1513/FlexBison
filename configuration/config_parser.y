@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <memory>
+
 #include "config_parser.hpp"
 #include "ConfigAST.h"
 
@@ -14,6 +15,7 @@ std::shared_ptr<ConfigFile> configfile = std::make_shared<ConfigFile>();
 std::vector<std::string>* pinlist;
 
 %}
+
 %union
 {
 

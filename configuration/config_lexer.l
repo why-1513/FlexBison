@@ -1,7 +1,5 @@
 %{
 #include <iostream>
-#include <vector>
-#include <memory>
 #include <string>
 
 #include "config_parser.hpp"
@@ -49,4 +47,5 @@ void yyparse_cleanup()
 "("                     puts("TLPAREN"); return TOKEN(TLPAREN);
 ")"                     puts("TRPAREN"); return TOKEN(TRPAREN);
 .                       printf("Unknown token:%s\n", yytext); yyterminate();
+
 %%
