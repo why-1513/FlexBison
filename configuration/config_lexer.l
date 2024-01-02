@@ -6,7 +6,7 @@
 
 #include <stdio.h>
 #include "config_parser.hpp"
-#include "ASTNodes.h"
+#include "ConfigAST.h"
 
 #define SAVE_TOKEN yylval.string = new std::string(yytext)
 #define TOKEN(t) ( yylval.token = t)

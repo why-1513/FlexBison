@@ -5,7 +5,7 @@
 #include <memory>
 #include <cstring>
 #include "config_parser.hpp"
-#include "ASTNodes.h"
+#include "ConfigAST.h"
 
 extern int yylex();
 void yyerror(const char* s)

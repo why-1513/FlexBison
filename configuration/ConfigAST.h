@@ -1,5 +1,5 @@
-#ifndef ASTNODES_H
-#define ASTNODES_H
+#ifndef ConfigAST_H
+#define ConfigAST_H
 #include <iostream>
 #include <vector>
 #include <memory>
@@ -305,4 +305,4 @@ public:
 
 extern std::shared_ptr<ConfigFile> configfile;
 
-#endif // ASTNODES_H
+#endif // ConfigAST_H

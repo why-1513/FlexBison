@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <memory>
-#include "ASTNodes.h"
+#include "ConfigAST.h"
 
 extern int yyparse();
 extern void yyparse_init(const char* filename);
