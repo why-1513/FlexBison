@@ -4,7 +4,6 @@
 #include <memory>
 #include <string>
 
-#include <stdio.h>
 #include "config_parser.hpp"
 #include "ConfigAST.h"
 
