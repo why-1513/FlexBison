@@ -26,8 +26,8 @@ void yyparse_cleanup()
 %option noyywrap
 
 %%
-[ \t\r\n]               ;
-"DFPN"                  puts("DFPN"); return TOKEN(DFPN);
+[ \t\r\n]				;
+"DFPN"					puts("DFPN"); return TOKEN(DFPN);
 "DFPS"                  puts("DFPS"); return TOKEN(DFPS);
 "PSTE"                  puts("PSTE"); return TOKEN(PSTE);
 "CONF"                  puts("CONF"); return TOKEN(CONF);
