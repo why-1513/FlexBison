@@ -15,7 +15,7 @@
 
 class ConfigFile {
 public:
-    ConfigFile() {}
+    ConfigFile();
     
     std::string filetype;
 
