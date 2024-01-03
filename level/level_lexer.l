@@ -60,6 +60,10 @@ void yyparse_cleanup()
 ")"						puts("TRPAREN"); return TOKEN(TRPAREN);
 "["						puts("TLBRACKET"); return TOKEN(TLBRACKET);
 "]"						puts("TRBRACKET"); return TOKEN(TRBRACKET);
+"*"						puts("TMUL"); return TOKEN(TMUL);
+"="						puts("TEQUAL"); return TOKEN(TEQUAL);
+"#"						puts("THASH"); return TOKEN(THASH);
+"@"						puts("TAT"); return TOKEN(TAT);
 .						printf("Unknown token:%s\n", yytext); yyterminate();
 
 %%
