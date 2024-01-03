@@ -9,28 +9,27 @@ extern void yyparse_cleanup();
 
 int main(int argc, char **argv) {
   
-  const char* config_name;
+  const char* configName;
   
   std::cout << "Please enter the config file name: ";
   std::string userInput;
   std::cin >> userInput;
 
-  config_name = userInput.c_str();
-  yyparse_init(config_name);
-  // yyparse_init(*(argv+1));
+  configName = userInput.c_str();
+  yyparse_init(configName);
   yyparse();
   yyparse_cleanup();
 
-  configfile->dfpn->printDFPNData();
-  configfile->dfps->printDFPSData();
-  configfile->pste->printPSTEData();
-  configfile->conf->printCONFData();
+  configfile->dfpn->printData();
+  configfile->dfps->printData();
+  configfile->pste->printData();
+  configfile->conf->printData();
   configfile->conf->printPinList();
-  configfile->dfgp->printDFGPData();
+  configfile->dfgp->printData();
   configfile->dfgp->printPinList();
-  configfile->pslc->printPSLCData();
+  configfile->pslc->printData();
   configfile->pslc->printPinList();
-  configfile->pssl->printPSSLData();
+  configfile->pssl->printData();
   configfile->pssl->printPinList();
   
   return 0;

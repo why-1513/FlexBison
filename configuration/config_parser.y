@@ -46,39 +46,39 @@ config_command: hp93000 TCOMMA TIDENTIFIER TCOMMA TDOUBLE{
 	configfile->setFileType(*$3);
 	}
 	| DFPN channel_no TCOMMA pinNo TCOMMA TLPAREN pin_name TRPAREN{
-		configfile->dfpn->addDFPNData(*$2,*$4,*$7);
+		configfile->dfpn->addData(*$2,*$4,*$7);
 	}
 	| DFPS dps_channel TCOMMA polarity TCOMMA TLPAREN pin_name TRPAREN{
-		configfile->dfps->addDFPSData(*$2,*$4,*$7);
+		configfile->dfps->addData(*$2,*$4,*$7);
 	}
 	| PSTE sites{
 		configfile->pste->setSites(*$2);
 	}
 	| CONF conf_parameters
 	| DFGP pin_type TCOMMA TLPAREN pin_names TRPAREN TCOMMA TLPAREN pin_group TRPAREN{
-		configfile->dfgp->addDFGPData(*$2,*pinlist,*$9);
+		configfile->dfgp->addData(*$2,*pinlist,*$9);
 	}
 	| PSLC pslc_parameters
 	| PSSL min_voltage TCOMMA max_voltage TCOMMA max_source_current TCOMMA max_sink_current TCOMMA TLPAREN pin_names TRPAREN{
-		configfile->pssl->addPSSLData(*$2,*$4,*$6,*$8,*pinlist);
+		configfile->pssl->addData(*$2,*$4,*$6,*$8,*pinlist);
 	}
 	;
 
 conf_parameters: pin_type TCOMMA pin_oper_mode TCOMMA TLPAREN pin_names TRPAREN{
-	configfile->conf->addCONFData("default",*$1,*$3,*pinlist);
+	configfile->conf->addData("default",*$1,*$3,*pinlist);
 	}
 	| conf_context TCOMMA pin_type TCOMMA pin_oper_mode TCOMMA TLPAREN pin_names TRPAREN{
-		configfile->conf->addCONFData(*$1,*$3,*$5,*pinlist);
+		configfile->conf->addData(*$1,*$3,*$5,*pinlist);
 		};
 
 pslc_parameters: pslc_value TCOMMA DCS_value TCOMMA TLPAREN pin_names TRPAREN{
-	configfile->pslc->addPSLCData(*$1,*$3,*pinlist);
+	configfile->pslc->addData(*$1,*$3,*pinlist);
 	}
 	| TCOMMA DCS_value TCOMMA TLPAREN pin_names TRPAREN{
-		configfile->pslc->addPSLCData("unused",*$2,*pinlist);
+		configfile->pslc->addData("unused",*$2,*pinlist);
 		}
 	| TCOMMA TCOMMA TLPAREN pin_names TRPAREN{
-		configfile->pslc->addPSLCData("unused","unused",*pinlist);
+		configfile->pslc->addData("unused","unused",*pinlist);
 		};
 
 channel_no: TINTEGER;
