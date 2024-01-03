@@ -11,7 +11,7 @@ int main(int argc, char **argv) {
   
   const char* config_name;
   
-  std::cout << "Please enter the config name: ";
+  std::cout << "Please enter the config file name: ";
   std::string userInput;
   std::cin >> userInput;
 

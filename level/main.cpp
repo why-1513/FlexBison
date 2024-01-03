@@ -11,7 +11,7 @@ int main(int argc, char **argv) {
   
   const char* level_name;
   
-  std::cout << "Please enter the level name: ";
+  std::cout << "Please enter the level file name: ";
   std::string userInput;
   std::cin >> userInput;
 

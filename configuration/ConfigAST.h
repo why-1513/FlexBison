@@ -9,10 +9,16 @@
 class ConfigFile {
 public:
     ConfigFile() {}
+    
     std::string filetype;
 
     void setFileType(const std::string& type) {
-        filetype = type;
+        if (type == "config") {
+            filetype = type;
+        } else {
+            std::cerr << "Error: File type does not match." << std::endl;
+            exit(1);
+        }
     }
 
     class DFPN {
