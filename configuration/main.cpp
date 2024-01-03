@@ -4,8 +4,8 @@
 #include "ConfigAST.h"
 
 extern int yyparse();
-extern void yyparse_init(const char* filename);
-extern void yyparse_cleanup();
+extern void yyparseInit(const char* filename);
+extern void yyparseCleanup();
 
 int main(int argc, char **argv) {
   
@@ -16,9 +16,9 @@ int main(int argc, char **argv) {
   std::cin >> userInput;
 
   configName = userInput.c_str();
-  yyparse_init(configName);
+  yyparseInit(configName);
   yyparse();
-  yyparse_cleanup();
+  yyparseCleanup();
 
   configfile->dfpn->printData();
   configfile->dfps->printData();
