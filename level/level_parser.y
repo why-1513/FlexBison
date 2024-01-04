@@ -1,7 +1,5 @@
 %{
-#include <iostream>
 #include <string>
-#include <memory>
 
 #include "level_parser.hpp"
 #include "LevelAST.h"
@@ -12,7 +10,7 @@ void yyerror(const char* s)
 	printf("Error: %s\n", s);
 }
 std::shared_ptr<LevelFile> levelfile = std::make_shared<LevelFile>();
-std::vector<std::string>* pinlist;
+std::vector<std::string> pinlist;
 
 %}
 %union

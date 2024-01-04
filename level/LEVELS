@@ -1,0 +1,122 @@
+hp93000,level,0.1
+PSLV 1,0,0.2,HIZ_R,0,(VCC)
+DRLV 1,300,2500,(G1,G2A,G2B,C,B,A)
+RCLV 1,1550,1650,(Y0,Y1,Y2,Y3,Y4,Y5,Y6,Y7)
+TERM 1,OFF,,,,,,(G1,G2A,G2B,C,B,A,Y0,Y1,Y2,Y3,Y4,Y5,Y6,Y7)
+CLMP 1,OFF,-2000,7000,(G1,G2A,G2B,C,B,A,Y0,Y1,Y2,Y3,Y4,Y5,Y6,Y7)
+LSUX 1
+EQSP LEV,EQN,#9000000196
+EQNSET 1 "FUN"
+
+SPECS 
+	VCC   [V]
+	VIL   [V]
+	VIH   [V]
+	VOL   [V]
+	VOH   [V]
+
+DPSPINS VCC
+	vout=VCC
+	ilimit=500
+	#t_ms =10  
+
+LEVELSET 1 "FUN"
+
+PINS IN
+vil=VIL
+vih=VIH
+
+PINS OUT
+vol=VOL
+voh=VOH
+@
+EQSP LEV,SPS,#9000003398
+
+
+EQNSET 1 "FUN"
+
+
+
+SPECSET 1 "CON"
+
+
+# SPECNAME       *****ACTUAL***** *****MINIMUM**** *****MAXIMUM**** UNITS COMMENT
+VCC              0                                                  [  V] 
+VIL              0                                                  [  V] 
+VIH              0                                                  [  V] 
+VOL              0                                                  [  V] 
+VOH              0                                                  [  V] 
+
+
+
+SPECSET 2 "FUN_4P75V"
+
+
+# SPECNAME       *****ACTUAL***** *****MINIMUM**** *****MAXIMUM**** UNITS COMMENT
+VCC              4.75                                               [  V] 
+VIL              0                                                  [  V] 
+VIH              4.75                                               [  V] 
+VOL              2.375                                              [  V] 
+VOH              2.375                                              [  V] 
+
+
+
+SPECSET 3 "FUN_5V"
+
+
+# SPECNAME       *****ACTUAL***** *****MINIMUM**** *****MAXIMUM**** UNITS COMMENT
+VCC              5                                                  [  V] 
+VIL              0                                                  [  V] 
+VIH              5                                                  [  V] 
+VOL              2.5                                                [  V] 
+VOH              2.5                                                [  V] 
+
+
+
+SPECSET 4 "FUN_5P25V"
+
+
+# SPECNAME       *****ACTUAL***** *****MINIMUM**** *****MAXIMUM**** UNITS COMMENT
+VCC              5.25                                               [  V] 
+VIL              0                                                  [  V] 
+VIH              5.25                                               [  V] 
+VOL              2.625                                              [  V] 
+VOH              2.625                                              [  V] 
+
+
+
+SPECSET 5 "VIHL_4P75V"
+
+
+# SPECNAME       *****ACTUAL***** *****MINIMUM**** *****MAXIMUM**** UNITS COMMENT
+VCC              4.75                                               [  V] 
+VIL              0.8                                                [  V] 
+VIH              2                                                  [  V] 
+VOL              2.375                                              [  V] 
+VOH              2.375                                              [  V] 
+
+
+
+SPECSET 6 "VIHL_5V"
+
+
+# SPECNAME       *****ACTUAL***** *****MINIMUM**** *****MAXIMUM**** UNITS COMMENT
+VCC              5                                                  [  V] 
+VIL              0.8                                                [  V] 
+VIH              2                                                  [  V] 
+VOL              2.5                                                [  V] 
+VOH              2.5                                                [  V] 
+
+
+
+SPECSET 7 "VIHL_5P25V"
+
+
+# SPECNAME       *****ACTUAL***** *****MINIMUM**** *****MAXIMUM**** UNITS COMMENT
+VCC              5.25                                               [  V] 
+VIL              0.8                                                [  V] 
+VIH              2                                                  [  V] 
+VOL              2.625                                              [  V] 
+VOH              2.625                                              [  V] 
+@
+NOOP "7.4.1",,,

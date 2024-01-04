@@ -1,5 +1,4 @@
 %{
-#include <iostream>
 #include <string>
 
 #include "level_parser.hpp"
@@ -8,17 +7,17 @@
 #define SAVE_TOKEN yylval.string = new std::string(yytext)
 #define TOKEN(t) ( yylval.token = t)
 
-static FILE* yyparse_file_ptr;
+static FILE* yyparseFilePtr;
 
-void yyparse_init(const char* filename)
+void yyparseInit(const char* filename)
 {
-    yyparse_file_ptr = fopen(filename, "r");
-	yyin = yyparse_file_ptr;
+    yyparseFilePtr = fopen(filename, "r");
+	yyin = yyparseFilePtr;
 }
 
-void yyparse_cleanup()
+void yyparseCleanup()
 {
-	fclose(yyparse_file_ptr);
+	fclose(yyparseFilePtr);
 }
 
 %}
