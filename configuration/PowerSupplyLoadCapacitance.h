@@ -10,8 +10,8 @@ public:
     std::vector<std::string> DCSValue;
     std::vector<std::vector<std::string>> pinlist;
 
-    void addData(const std::string& infoValue, const std::string& infoDCSValue,
-                 const std::vector<std::string>& infoPinList);
+    void addData(const std::string infoValue, const std::string infoDCSValue,
+                 const std::vector<std::string> infoPinList);
 
     void printPinList() const;
 

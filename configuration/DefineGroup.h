@@ -10,8 +10,8 @@ public:
     std::vector<std::string> pinGroup;
     std::vector<std::vector<std::string>> pinlist;
 
-    void addData(const std::string& infoPinType,
-                 const std::vector<std::string>& infoPinList, const std::string& infoPinGroup);
+    void addData(const std::string infoPinType,
+                 const std::vector<std::string> infoPinList, const std::string infoPinGroup);
 
     void printPinList() const;
 

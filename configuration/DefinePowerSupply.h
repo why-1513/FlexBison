@@ -10,8 +10,8 @@ public:
     std::vector<std::string> polarity;
     std::vector<std::string> pin;
 
-    void addData(const std::string& infoDpsChannel,
-                 const std::string& infoPolarity, const std::string& infoPin);
+    void addData(const std::string infoDpsChannel,
+                 const std::string infoPolarity, const std::string infoPin);
 
     void printData() const;
 };

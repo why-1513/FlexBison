@@ -12,9 +12,9 @@ public:
     std::vector<std::string> maxSinkCurrent;
     std::vector<std::vector<std::string>> pinlist;
 
-    void addData(const std::string& infoMinVol, const std::string& infoMaxVol,
-                 const std::string& infoMaxSourceCurrent, const std::string& infoMaxSinkCurrent,
-                 const std::vector<std::string>& infoPinList);
+    void addData(const std::string infoMinVol, const std::string infoMaxVol,
+                 const std::string infoMaxSourceCurrent, const std::string infoMaxSinkCurrent,
+                 const std::vector<std::string> infoPinList);
 
     void printPinList() const;
 

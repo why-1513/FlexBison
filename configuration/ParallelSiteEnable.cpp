@@ -1,7 +1,7 @@
 #include "ParallelSiteEnable.h"
 #include <iostream>
 
-void ParallelSiteEnable::setSites(const std::string& infoSites) {
+void ParallelSiteEnable::setSites(const std::string infoSites) {
     sites = infoSites;
 }
 

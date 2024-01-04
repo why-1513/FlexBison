@@ -11,8 +11,8 @@ public:
     std::vector<std::string> pinOperMode;
     std::vector<std::vector<std::string>> pinlist;
 
-    void addData(const std::string& infoContext, const std::string& infoPinType,
-                 const std::string& infoPinOperMode, const std::vector<std::string>& infoPinList);
+    void addData(const std::string infoContext, const std::string infoPinType,
+                 const std::string infoPinOperMode, const std::vector<std::string> infoPinList);
 
     void printPinList() const;
 

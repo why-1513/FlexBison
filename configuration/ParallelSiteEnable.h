@@ -7,7 +7,7 @@ class ParallelSiteEnable {
 public:
     std::string sites;
 
-    void setSites(const std::string& infoSites);
+    void setSites(const std::string infoSites);
 
     void printData() const;
 };

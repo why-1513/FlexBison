@@ -19,7 +19,7 @@ public:
     
     std::string filetype;
 
-    void setFileType(const std::string& type);
+    void setFileType(const std::string type);
 
     std::shared_ptr<DefinePinName> dfpn;
     std::shared_ptr<DefinePowerSupply> dfps;

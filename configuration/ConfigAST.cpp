@@ -8,7 +8,7 @@ ConfigFile::ConfigFile() : dfpn(std::make_shared<DefinePinName>()),
                            pslc(std::make_shared<PowerSupplyLoadCapacitance>()),
                            pssl(std::make_shared<PowerSupplySafetyLimits>()) {}
 
-void ConfigFile::setFileType(const std::string& type) {
+void ConfigFile::setFileType(const std::string type) {
         if (type == "config") {
             filetype = type;
         } else {
