@@ -11,6 +11,8 @@
 #include "DefineGroup.h"
 #include "PowerSupplyLoadCapacitance.h"
 #include "PowerSupplySafetyLimits.h"
+#include "spdlog/spdlog.h"
+#include "spdlog/sinks/basic_file_sink.h"
 
 
 class ConfigFile {
