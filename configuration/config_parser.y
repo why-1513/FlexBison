@@ -1,8 +1,5 @@
 %{
-#include <iostream>
 #include <string>
-#include <memory>
-
 #include "config_parser.hpp"
 #include "ConfigAST.h"
 
@@ -12,8 +9,7 @@ void yyerror(const char* s)
 	printf("Error: %s\n", s);
 }
 std::shared_ptr<ConfigFile> configfile = std::make_shared<ConfigFile>();
-std::vector<std::string>* pinlist;
-
+std::vector<std::string> pinlist;
 %}
 
 %union
@@ -56,29 +52,29 @@ config_command: hp93000 TCOMMA TIDENTIFIER TCOMMA TDOUBLE{
 	}
 	| CONF conf_parameters
 	| DFGP pin_type TCOMMA TLPAREN pin_names TRPAREN TCOMMA TLPAREN pin_group TRPAREN{
-		configfile->dfgp->addData(*$2,*pinlist,*$9);
+		configfile->dfgp->addData(*$2,pinlist,*$9);
 	}
 	| PSLC pslc_parameters
 	| PSSL min_voltage TCOMMA max_voltage TCOMMA max_source_current TCOMMA max_sink_current TCOMMA TLPAREN pin_names TRPAREN{
-		configfile->pssl->addData(*$2,*$4,*$6,*$8,*pinlist);
+		configfile->pssl->addData(*$2,*$4,*$6,*$8,pinlist);
 	}
 	;
 
 conf_parameters: pin_type TCOMMA pin_oper_mode TCOMMA TLPAREN pin_names TRPAREN{
-	configfile->conf->addData("default",*$1,*$3,*pinlist);
+	configfile->conf->addData("default",*$1,*$3,pinlist);
 	}
 	| conf_context TCOMMA pin_type TCOMMA pin_oper_mode TCOMMA TLPAREN pin_names TRPAREN{
-		configfile->conf->addData(*$1,*$3,*$5,*pinlist);
+		configfile->conf->addData(*$1,*$3,*$5,pinlist);
 		};
 
 pslc_parameters: pslc_value TCOMMA DCS_value TCOMMA TLPAREN pin_names TRPAREN{
-	configfile->pslc->addData(*$1,*$3,*pinlist);
+	configfile->pslc->addData(*$1,*$3,pinlist);
 	}
 	| TCOMMA DCS_value TCOMMA TLPAREN pin_names TRPAREN{
-		configfile->pslc->addData("unused",*$2,*pinlist);
+		configfile->pslc->addData("unused",*$2,pinlist);
 		}
 	| TCOMMA TCOMMA TLPAREN pin_names TRPAREN{
-		configfile->pslc->addData("unused","unused",*pinlist);
+		configfile->pslc->addData("unused","unused",pinlist);
 		};
 
 channel_no: TINTEGER;
@@ -116,11 +112,11 @@ max_sink_current: TDOUBLE
 	;
 
 pin_names: pin_names TCOMMA pin_name {
-	pinlist->push_back(*$3);
+	pinlist.push_back(*$3);
 }
 	| pin_name {
-		pinlist = new std::vector<std::string>();
-		pinlist->push_back(*$1);
+		pinlist = std::vector<std::string>();
+		pinlist.push_back(*$1);
 	};
 pin_name: TIDENTIFIER;
 
