@@ -11,6 +11,7 @@
 #include "DefineGroup.h"
 #include "PowerSupplyLoadCapacitance.h"
 #include "PowerSupplySafetyLimits.h"
+#include "LoggerManager.h"
 
 
 class ConfigFile {
