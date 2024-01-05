@@ -21,6 +21,7 @@ add_executable(configuration
     ${CMAKE_CURRENT_BINARY_DIR}/DefineGroup.cpp
     ${CMAKE_CURRENT_BINARY_DIR}/PowerSupplyLoadCapacitance.cpp
     ${CMAKE_CURRENT_BINARY_DIR}/PowerSupplySafetyLimits.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/LoggerManager.cpp
     )
 
 target_link_libraries(configuration PUBLIC
