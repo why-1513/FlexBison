@@ -1,5 +1,8 @@
 #include <fstream>
 #include "ConfigAST.h"
+#include "spdlog/spdlog.h"
+#include "spdlog/sinks/basic_file_sink.h"
+#include "spdlog/sinks/stdout_color_sinks.h"
 
 extern int yyparse();
 extern void yyparseInit(const char* filename);
