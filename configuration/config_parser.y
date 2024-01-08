@@ -5,8 +5,9 @@
 
 extern int yylex();
 void yyerror(const char* s)
-{
-	printf("Error: %s\n", s);
+{	
+	auto logger = LoggerManager::getLogger();
+	logger->error("Error: {}", s);
 }
 std::shared_ptr<ConfigFile> configfile = std::make_shared<ConfigFile>();
 std::vector<std::string> pinlist;
