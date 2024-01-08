@@ -16,6 +16,7 @@ int main(int argc, char **argv) {
   std::cin >> userInput;
 
   configName = userInput.c_str();
+  logger->info("Get a file: {}", configName);
   yyparseInit(configName);
   yyparse();
   yyparseCleanup();
