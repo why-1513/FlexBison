@@ -1,5 +1,4 @@
 #include "DefinePowerSupply.h"
-#include <iostream>
 
 void DefinePowerSupply::addData(const std::string infoDpsChannel,
                                 const std::string infoPolarity, const std::string infoPin) {
@@ -9,22 +8,31 @@ void DefinePowerSupply::addData(const std::string infoDpsChannel,
 }
 
 void DefinePowerSupply::printData() const {
-    std::cout << "DFPS Data:" << std::endl;
-    std::cout << "DPS Channel: ";
-    for (const auto channel : dpsChannel) {
-        std::cout << channel << " ";
-    }
-    std::cout << std::endl;
+    auto logger = LoggerManager::getLogger();
+    logger->info("DFPS Data:");
 
-    std::cout << "Polarity: ";
-    for (const auto polarity : polarity) {
-        std::cout << polarity << " ";
-    }
-    std::cout << std::endl;
+    std::string vectorDpsChannel;
+    std::string vectorPolarity;
+    std::string vectorPin;
 
-    std::cout << "Pin: ";
-    for (const auto pin : pin) {
-        std::cout << pin << " ";
+    if(!dpsChannel.empty()){
+        for (const auto channel : dpsChannel) {
+            vectorDpsChannel += channel + ",";
+        }
+        logger->info("DPS Channel: {}", vectorDpsChannel);
     }
-    std::cout << std::endl;
+
+    if(!polarity.empty()){
+        for (const auto polarity : polarity) {
+            vectorPolarity += polarity + ",";
+        }
+        logger->info("Polarity: {}", vectorPolarity);
+    }
+
+    if(pin.empty()){
+        for (const auto pin : pin) {
+            vectorPin += pin + ",";
+        }
+        logger->info("Pin: {}", vectorPin);
+    }
 }
