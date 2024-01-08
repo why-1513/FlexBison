@@ -1,5 +1,4 @@
 #include "PowerSupplyLoadCapacitance.h"
-#include <iostream>
 
 void PowerSupplyLoadCapacitance::addData(const std::string infoValue, const std::string infoDCSValue,
                                          const std::vector<std::string> infoPinList) {
@@ -9,27 +8,40 @@ void PowerSupplyLoadCapacitance::addData(const std::string infoValue, const std:
 }
 
 void PowerSupplyLoadCapacitance::printPinList() const {
-    std::cout << "PSLC Pinlist:" << std::endl;
-    for (const auto pinGroup : pinlist) {
-        for (const auto pin : pinGroup) {
-            std::cout << pin << " ";
+    auto logger = LoggerManager::getLogger();
+    logger->info("PSLC Pinlist:");
+
+    if(!pinlist.empty()){
+        for (const auto pinGroup : pinlist) {
+            std::string vectorContents;
+            for (const auto pin : pinGroup) {
+                vectorContents += pin + ",";
+            }
+            logger->info(vectorContents);
         }
-        std::cout << std::endl;
-    }
+    }    
 }
 
 void PowerSupplyLoadCapacitance::printData() const {
-    std::cout << "PSLC Data:" << std::endl;
+    auto logger = LoggerManager::getLogger();
+    logger->info("PSLC Data:");
 
-    std::cout << "Value: ";
-    for (const auto val : value) {
-        std::cout << val << " ";
-    }
-    std::cout << std::endl;
+    std::string vectorValue;
+    std::string vectorDCSValue;
 
-    std::cout << "DCSValue: ";
-    for (const auto val : DCSValue) {
-        std::cout << val << " ";
+    if(!value.empty()){
+        for (const auto val : value) {
+            vectorValue += val + ",";
+        }
+        logger->info("Value: {}", vectorValue);
+        vectorValue.clear();
     }
-    std::cout << std::endl;
+    
+    if(!DCSValue.empty()){
+        for (const auto val : DCSValue) {
+            vectorDCSValue += val + ",";
+        }
+        logger->info("DCSValue: {}", vectorDCSValue);
+        vectorDCSValue.clear();
+    }
 }

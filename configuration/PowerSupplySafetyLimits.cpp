@@ -1,5 +1,4 @@
 #include "PowerSupplySafetyLimits.h"
-#include <iostream>
 
 void PowerSupplySafetyLimits::addData(const std::string infoMinVol, const std::string infoMaxVol,
                                       const std::string infoMaxSourceCurrent, const std::string infoMaxSinkCurrent,
@@ -12,39 +11,58 @@ void PowerSupplySafetyLimits::addData(const std::string infoMinVol, const std::s
 }
 
 void PowerSupplySafetyLimits::printPinList() const {
-    std::cout << "PSSL Pinlist:" << std::endl;
-    for (const auto pinGroup : pinlist) {
-        for (const auto pin : pinGroup) {
-            std::cout << pin << " ";
+    auto logger = LoggerManager::getLogger();
+    logger->info("PSSL Pinlist:");
+
+    if(!pinlist.empty()){
+        for (const auto pinGroup : pinlist) {
+            std::string vectorContents;
+            for (const auto pin : pinGroup) {
+                vectorContents += pin + ",";
+            }
+            logger->info(vectorContents);
         }
-        std::cout << std::endl;
-    }
+    }    
 }
 
 void PowerSupplySafetyLimits::printData() const {
-    std::cout << "PSSL Data:" << std::endl;
+    auto logger = LoggerManager::getLogger();
+    logger->info("PSSL Data:");
 
-    std::cout << "MinVoltage: ";
-    for (const auto vol : minVoltage) {
-        std::cout << vol << " ";
-    }
-    std::cout << std::endl;
+    std::string vectorMinVoltage;
+    std::string vectorMaxVoltage;
+    std::string vectorMaxSourceCurrent;
+    std::string vectorMaxSinkCurrent;
 
-    std::cout << "MaxVoltage: ";
-    for (const auto vol : maxVoltage) {
-        std::cout << vol << " ";
+    if(!minVoltage.empty()){
+        for (const auto vol : minVoltage) {
+            vectorMinVoltage += vol + ",";
+        }
+        logger->info("MinVoltage: {}", vectorMinVoltage);
+        vectorMinVoltage.clear();
     }
-    std::cout << std::endl;
 
-    std::cout << "MaxSourceCurrent: ";
-    for (const auto current : maxSourceCurrent) {
-        std::cout << current << " ";
+    if(!maxVoltage.empty()){
+        for (const auto vol : maxVoltage) {
+            vectorMaxVoltage += vol + ",";
+        }
+        logger->info("MaxVoltage: {}", vectorMaxVoltage);
+        vectorMaxVoltage.clear();
     }
-    std::cout << std::endl;
 
-    std::cout << "MaxSinkCurrent: ";
-    for (const auto current : maxSinkCurrent) {
-        std::cout << current << " ";
+    if(!maxSourceCurrent.empty()){
+        for (const auto current : maxSourceCurrent) {
+            vectorMaxSourceCurrent += current + ",";
+        }
+        logger->info("MaxSourceCurrent: {}", vectorMaxSourceCurrent);
+        vectorMaxSourceCurrent.clear();
     }
-    std::cout << std::endl;
+
+    if(!maxSinkCurrent.empty()){
+        for (const auto current : maxSinkCurrent) {
+            vectorMaxSinkCurrent += current + ",";
+        }
+        logger->info("MaxSinkCurrent: {}", vectorMaxSinkCurrent);
+        vectorMaxSinkCurrent.clear();
+    }
 }
