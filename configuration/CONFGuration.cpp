@@ -1,7 +1,5 @@
 #include "CONFGuration.h"
 
-auto logger = LoggerManager::getLogger();
-
 void CONFGuration::addData(const std::string infoContext, const std::string infoPinType,
                            const std::string infoPinOperMode, const std::vector<std::string> infoPinList) {
     context.push_back(infoContext);
@@ -11,6 +9,7 @@ void CONFGuration::addData(const std::string infoContext, const std::string info
 }
 
 void CONFGuration::printPinList() const {
+    auto logger = LoggerManager::getLogger();
     logger->info("CONF Pinlist:");
     for (const auto pinGroup : pinlist) {
         std::string vectorContents;
@@ -22,6 +21,7 @@ void CONFGuration::printPinList() const {
 }
 
 void CONFGuration::printData() const {
+    auto logger = LoggerManager::getLogger();
     logger->info("CONF Data:");
 
     std::string vectorContext;
