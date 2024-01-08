@@ -18,6 +18,7 @@ void DefineGroup::printPinList() const {
                 vectorContents += pin + ",";
             }
             logger->info(vectorContents);
+            vectorContents.clear();
         }
     }
 }
@@ -34,6 +35,7 @@ void DefineGroup::printData() const {
             vectorPinType += type + ",";
         }
         logger->info("PinType: {}", vectorPinType);
+        vectorPinType.clear();
     }
 
     if(!pinGroup.empty()){
@@ -41,5 +43,6 @@ void DefineGroup::printData() const {
             vectorPinGroup += group + ",";
         }
         logger->info("PinGroup: {}", vectorPinGroup);
+        vectorPinGroup.clear();
     }
 }

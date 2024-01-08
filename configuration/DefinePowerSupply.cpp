@@ -20,6 +20,7 @@ void DefinePowerSupply::printData() const {
             vectorDpsChannel += channel + ",";
         }
         logger->info("DPS Channel: {}", vectorDpsChannel);
+        vectorDpsChannel.clear();
     }
 
     if(!polarity.empty()){
@@ -27,6 +28,7 @@ void DefinePowerSupply::printData() const {
             vectorPolarity += polarity + ",";
         }
         logger->info("Polarity: {}", vectorPolarity);
+        vectorPolarity.clear();
     }
 
     if(pin.empty()){
@@ -34,5 +36,6 @@ void DefinePowerSupply::printData() const {
             vectorPin += pin + ",";
         }
         logger->info("Pin: {}", vectorPin);
+        vectorPin.clear();
     }
 }

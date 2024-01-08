@@ -20,6 +20,7 @@ void DefinePinName::printData() const {
             vectorChannelNo += channel + ",";
         }
         logger->info("Channel No: {}", vectorChannelNo);
+        vectorChannelNo.clear();
     }
 
     if(!pinNo.empty()){
@@ -27,6 +28,7 @@ void DefinePinName::printData() const {
             vectorPinNo += pinNo + ",";
         }
         logger->info("Pin No: {}", vectorPinNo);
+        vectorPinNo.clear();
     }
 
     if(!pin.empty()){
@@ -34,5 +36,6 @@ void DefinePinName::printData() const {
             vectorPin += pin + ",";
         }
         logger->info("Pin: {}", vectorPin);
+        vectorPin.clear();
     }
 }

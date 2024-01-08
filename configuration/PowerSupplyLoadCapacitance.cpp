@@ -18,6 +18,7 @@ void PowerSupplyLoadCapacitance::printPinList() const {
                 vectorContents += pin + ",";
             }
             logger->info(vectorContents);
+            vectorContents.clear();            
         }
     }    
 }
