@@ -1,5 +1,6 @@
 #include "DefineGroup.h"
-#include <iostream>
+
+auto logger = LoggerManager::getLogger();
 
 void DefineGroup::addData(const std::string infoPinType,
                           const std::vector<std::string> infoPinList, const std::string infoPinGroup) {
@@ -9,27 +10,29 @@ void DefineGroup::addData(const std::string infoPinType,
 }
 
 void DefineGroup::printPinList() const {
-    std::cout << "DFGP Pinlist:" << std::endl;
+    logger->info("DFGP Pinlist:");
     for (const auto pinGroup : pinlist) {
+        std::string vectorContents;
         for (const auto pin : pinGroup) {
-            std::cout << pin << " ";
+            vectorContents += pin + ",";
         }
-        std::cout << std::endl;
+        logger->info(vectorContents);
     }
 }
 
 void DefineGroup::printData() const {
-    std::cout << "DFGP Data:" << std::endl;
+    logger->info("DFGP Data:");
 
-    std::cout << "PinType: ";
+    std::string vectorPinType;
+    std::string vectorPinGroup;
+
     for (const auto type : pinType) {
-        std::cout << type << " ";
+        vectorPinType += type + ",";
     }
-    std::cout << std::endl;
+    logger->info("PinType: {}", vectorPinType);
 
-    std::cout << "PinGroup: ";
     for (const auto group : pinGroup) {
-        std::cout << group << " ";
+        vectorPinGroup += group + ",";
     }
-    std::cout << std::endl;
+    logger->info("PinGroup: {}", vectorPinGroup);
 }
