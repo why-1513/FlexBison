@@ -2,6 +2,7 @@
 #define PARALLELSITEENABLE_H
 
 #include <string>
+#include "LoggerManager.h"
 
 class ParallelSiteEnable {
 public:
