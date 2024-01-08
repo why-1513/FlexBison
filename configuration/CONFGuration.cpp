@@ -19,6 +19,7 @@ void CONFGuration::printPinList() const {
                 vectorContents += pin + ",";
             }
             logger->info(vectorContents);
+            vectorContents.clear();
         }
     }
 }
@@ -36,6 +37,7 @@ void CONFGuration::printData() const {
             vectorContext += text + ",";
         }
         logger->info("Context: {}", vectorContext);
+        vectorContext.clear();
     }
 
     if(!pinType.empty()){
@@ -43,6 +45,7 @@ void CONFGuration::printData() const {
             vectorPinType += type + ",";
         }
         logger->info("PinType: {}", vectorPinType);
+        vectorPinType.clear();
     }
 
     if(!pinOperMode.empty()){
@@ -50,5 +53,6 @@ void CONFGuration::printData() const {
             vectorPinOperMode += mode + ",";
         }
         logger->info("PinOperMode: {}", vectorPinOperMode);
+        vectorPinOperMode.clear();
     }
 }
