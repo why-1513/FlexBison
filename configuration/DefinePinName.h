@@ -1,8 +1,9 @@
 #ifndef DEFINEPINNAME_H
 #define DEFINEPINNAME_H
-#include <iostream>
+
 #include <vector>
 #include <string>
+#include "LoggerManager.h"
 
 class DefinePinName {
 public:
