@@ -1,5 +1,6 @@
 #include "CONFGuration.h"
-#include <iostream>
+
+auto logger = LoggerManager::getLogger();
 
 void CONFGuration::addData(const std::string infoContext, const std::string infoPinType,
                            const std::string infoPinOperMode, const std::vector<std::string> infoPinList) {
@@ -10,32 +11,35 @@ void CONFGuration::addData(const std::string infoContext, const std::string info
 }
 
 void CONFGuration::printPinList() const {
-    std::cout << "CONF Pinlist:" << std::endl;
+    logger->info("CONF Pinlist:");
     for (const auto pinGroup : pinlist) {
+        std::string vectorContents;
         for (const auto pin : pinGroup) {
-            std::cout << pin << " ";
+            vectorContents += pin + ",";
         }
-        std::cout << std::endl;
+        logger->info(vectorContents);
     }
 }
 
 void CONFGuration::printData() const {
-    std::cout << "CONF Data:" << std::endl;
-    std::cout << "Context: ";
+    logger->info("CONF Data:");
+
+    std::string vectorContext;
+    std::string vectorPinType;
+    std::string vectorPinOperMode;
+
     for (const auto text : context) {
-        std::cout << text << " ";
+        vectorContext += text + ",";
     }
-    std::cout << std::endl;
+    logger->info("Context: {}", vectorContext);
 
-    std::cout << "PinType: ";
     for (const auto type : pinType) {
-        std::cout << type << " ";
+        vectorPinType += type + ",";
     }
-    std::cout << std::endl;
+    logger->info("PinType: {}", vectorPinType);
 
-    std::cout << "PinOperMode: ";
     for (const auto mode : pinOperMode) {
-        std::cout << mode << " ";
+        vectorPinOperMode += mode + ",";
     }
-    std::cout << std::endl;
+    logger->info("PinOperMode: {}", vectorPinOperMode);
 }

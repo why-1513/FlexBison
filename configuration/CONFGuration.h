@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include "LoggerManager.h"
 
 class CONFGuration {
 public:
