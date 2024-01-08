@@ -11,12 +11,14 @@ void DefineGroup::printPinList() const {
     auto logger = LoggerManager::getLogger();
     logger->info("DFGP Pinlist:");
     
-    for (const auto pinGroup : pinlist) {
-        std::string vectorContents;
-        for (const auto pin : pinGroup) {
-            vectorContents += pin + ",";
+    if(!pinlist.empty()){
+        for (const auto pinGroup : pinlist) {
+            std::string vectorContents;
+            for (const auto pin : pinGroup) {
+                vectorContents += pin + ",";
+            }
+            logger->info(vectorContents);
         }
-        logger->info(vectorContents);
     }
 }
 
@@ -27,13 +29,17 @@ void DefineGroup::printData() const {
     std::string vectorPinType;
     std::string vectorPinGroup;
 
-    for (const auto type : pinType) {
-        vectorPinType += type + ",";
+    if(!pinType.empty()){
+        for (const auto type : pinType) {
+            vectorPinType += type + ",";
+        }
+        logger->info("PinType: {}", vectorPinType);
     }
-    logger->info("PinType: {}", vectorPinType);
 
-    for (const auto group : pinGroup) {
-        vectorPinGroup += group + ",";
+    if(!pinGroup.empty()){
+        for (const auto group : pinGroup) {
+            vectorPinGroup += group + ",";
+        }
+        logger->info("PinGroup: {}", vectorPinGroup);
     }
-    logger->info("PinGroup: {}", vectorPinGroup);
 }
