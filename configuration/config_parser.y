@@ -6,7 +6,7 @@
 extern int yylex();
 void yyerror(const char* s)
 {	
-	auto logger = LoggerManager::getLogger();
+	auto logger = LoggerManager::getConfigLogger();
 	logger->error("Error: {}", s);
 }
 std::shared_ptr<ConfigFile> configfile = std::make_shared<ConfigFile>();

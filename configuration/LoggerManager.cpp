@@ -14,8 +14,6 @@ std::shared_ptr<spdlog::logger> LoggerManager::getConfigLogger() {
         configLogger_ = std::make_shared<spdlog::logger>("ConfigLogger", spdlog::sinks_init_list({fileSink, consoleSink}));
         configLogger_->set_pattern("[%Y-%m-%d %H:%M:%S.%e] [%L] %v");
 
-        // 设置默认日志记录器
-        spdlog::set_default_logger(configLogger_);
     }
 
     return configLogger_;
