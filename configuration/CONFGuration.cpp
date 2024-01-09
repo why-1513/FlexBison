@@ -9,8 +9,8 @@ void CONFGuration::addData(const std::string infoContext, const std::string info
 }
 
 void CONFGuration::printPinList() const {
-    auto logger = LoggerManager::getLogger();
-    logger->info("CONF Pinlist:");
+    auto copnfigLogger = LoggerManager::getConfigLogger();
+    copnfigLogger->info("CONF Pinlist:");
 
     if(!pinlist.empty()){
         for (const auto pinGroup : pinlist) {
@@ -18,15 +18,15 @@ void CONFGuration::printPinList() const {
             for (const auto pin : pinGroup) {
                 vectorContents += pin + ",";
             }
-            logger->info(vectorContents);
+            copnfigLogger->info(vectorContents);
             vectorContents.clear();
         }
     }
 }
 
 void CONFGuration::printData() const {
-    auto logger = LoggerManager::getLogger();
-    logger->info("CONF Data:");
+    auto copnfigLogger = LoggerManager::getConfigLogger();
+    copnfigLogger->info("CONF Data:");
 
     std::string vectorContext;
     std::string vectorPinType;
@@ -36,7 +36,7 @@ void CONFGuration::printData() const {
         for (const auto text : context) {
             vectorContext += text + ",";
         }
-        logger->info("Context: {}", vectorContext);
+        copnfigLogger->info("Context: {}", vectorContext);
         vectorContext.clear();
     }
 
@@ -44,7 +44,7 @@ void CONFGuration::printData() const {
         for (const auto type : pinType) {
             vectorPinType += type + ",";
         }
-        logger->info("PinType: {}", vectorPinType);
+        copnfigLogger->info("PinType: {}", vectorPinType);
         vectorPinType.clear();
     }
 
@@ -52,7 +52,7 @@ void CONFGuration::printData() const {
         for (const auto mode : pinOperMode) {
             vectorPinOperMode += mode + ",";
         }
-        logger->info("PinOperMode: {}", vectorPinOperMode);
+        copnfigLogger->info("PinOperMode: {}", vectorPinOperMode);
         vectorPinOperMode.clear();
     }
 }

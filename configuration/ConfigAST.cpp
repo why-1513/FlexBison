@@ -9,12 +9,12 @@ ConfigFile::ConfigFile() : dfpn(std::make_shared<DefinePinName>()),
                            pssl(std::make_shared<PowerSupplySafetyLimits>()) {}
 
 void ConfigFile::setFileType(const std::string type) {
-    auto logger = LoggerManager::getLogger();
+    auto copnfigLogger = LoggerManager::getConfigLogger();
     if (type == "config") {
         filetype = type;
-        logger->info("Get a config file.");
+        copnfigLogger->info("Get a config file.");
     } else {
-        logger->error("Error: File type does not match.");
+        copnfigLogger->error("Error: File type does not match.");
         exit(1);
     }
 }

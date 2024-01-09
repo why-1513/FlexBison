@@ -8,8 +8,8 @@ void DefineGroup::addData(const std::string infoPinType,
 }
 
 void DefineGroup::printPinList() const {
-    auto logger = LoggerManager::getLogger();
-    logger->info("DFGP Pinlist:");
+    auto copnfigLogger = LoggerManager::getConfigLogger();
+    copnfigLogger->info("DFGP Pinlist:");
     
     if(!pinlist.empty()){
         for (const auto pinGroup : pinlist) {
@@ -17,15 +17,15 @@ void DefineGroup::printPinList() const {
             for (const auto pin : pinGroup) {
                 vectorContents += pin + ",";
             }
-            logger->info(vectorContents);
+            copnfigLogger->info(vectorContents);
             vectorContents.clear();
         }
     }
 }
 
 void DefineGroup::printData() const {
-    auto logger = LoggerManager::getLogger();
-    logger->info("DFGP Data:");
+    auto copnfigLogger = LoggerManager::getConfigLogger();
+    copnfigLogger->info("DFGP Data:");
 
     std::string vectorPinType;
     std::string vectorPinGroup;
@@ -34,7 +34,7 @@ void DefineGroup::printData() const {
         for (const auto type : pinType) {
             vectorPinType += type + ",";
         }
-        logger->info("PinType: {}", vectorPinType);
+        copnfigLogger->info("PinType: {}", vectorPinType);
         vectorPinType.clear();
     }
 
@@ -42,7 +42,7 @@ void DefineGroup::printData() const {
         for (const auto group : pinGroup) {
             vectorPinGroup += group + ",";
         }
-        logger->info("PinGroup: {}", vectorPinGroup);
+        copnfigLogger->info("PinGroup: {}", vectorPinGroup);
         vectorPinGroup.clear();
     }
 }

@@ -7,10 +7,10 @@
 
 class LoggerManager {
 public:
-    static std::shared_ptr<spdlog::logger> getLogger();
+    static std::shared_ptr<spdlog::logger> getConfigLogger();
 
 private:
-    static std::shared_ptr<spdlog::logger> logger_;
+    static std::shared_ptr<spdlog::logger> configLogger_;
 };
 
 #endif // LoggerManager_H
