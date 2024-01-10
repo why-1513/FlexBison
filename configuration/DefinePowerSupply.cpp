@@ -8,8 +8,8 @@ void DefinePowerSupply::addData(const std::string infoDpsChannel,
 }
 
 void DefinePowerSupply::printData() const {
-    auto copnfigLogger = LoggerManager::getConfigLogger();
-    copnfigLogger->info("DFPS Data:");
+    auto configLogger = LoggerManager::getConfigLogger();
+    configLogger->info("DFPS Data:");
 
     std::string vectorDpsChannel;
     std::string vectorPolarity;
@@ -19,7 +19,7 @@ void DefinePowerSupply::printData() const {
         for (const auto channel : dpsChannel) {
             vectorDpsChannel += channel + ",";
         }
-        copnfigLogger->info("DPS Channel: {}", vectorDpsChannel);
+        configLogger->info("DPS Channel: {}", vectorDpsChannel);
         vectorDpsChannel.clear();
     }
 
@@ -27,7 +27,7 @@ void DefinePowerSupply::printData() const {
         for (const auto polarity : polarity) {
             vectorPolarity += polarity + ",";
         }
-        copnfigLogger->info("Polarity: {}", vectorPolarity);
+        configLogger->info("Polarity: {}", vectorPolarity);
         vectorPolarity.clear();
     }
 
@@ -35,7 +35,7 @@ void DefinePowerSupply::printData() const {
         for (const auto pin : pin) {
             vectorPin += pin + ",";
         }
-        copnfigLogger->info("Pin: {}", vectorPin);
+        configLogger->info("Pin: {}", vectorPin);
         vectorPin.clear();
     }
 }

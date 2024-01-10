@@ -8,8 +8,8 @@ void PowerSupplyLoadCapacitance::addData(const std::string infoValue, const std:
 }
 
 void PowerSupplyLoadCapacitance::printPinList() const {
-    auto copnfigLogger = LoggerManager::getConfigLogger();
-    copnfigLogger->info("PSLC Pinlist:");
+    auto configLogger = LoggerManager::getConfigLogger();
+    configLogger->info("PSLC Pinlist:");
 
     if(!pinlist.empty()){
         for (const auto pinGroup : pinlist) {
@@ -17,15 +17,15 @@ void PowerSupplyLoadCapacitance::printPinList() const {
             for (const auto pin : pinGroup) {
                 vectorContents += pin + ",";
             }
-            copnfigLogger->info(vectorContents);
+            configLogger->info(vectorContents);
             vectorContents.clear();            
         }
     }    
 }
 
 void PowerSupplyLoadCapacitance::printData() const {
-    auto copnfigLogger = LoggerManager::getConfigLogger();
-    copnfigLogger->info("PSLC Data:");
+    auto configLogger = LoggerManager::getConfigLogger();
+    configLogger->info("PSLC Data:");
 
     std::string vectorValue;
     std::string vectorDCSValue;
@@ -34,7 +34,7 @@ void PowerSupplyLoadCapacitance::printData() const {
         for (const auto val : value) {
             vectorValue += val + ",";
         }
-        copnfigLogger->info("Value: {}", vectorValue);
+        configLogger->info("Value: {}", vectorValue);
         vectorValue.clear();
     }
     
@@ -42,7 +42,7 @@ void PowerSupplyLoadCapacitance::printData() const {
         for (const auto val : DCSValue) {
             vectorDCSValue += val + ",";
         }
-        copnfigLogger->info("DCSValue: {}", vectorDCSValue);
+        configLogger->info("DCSValue: {}", vectorDCSValue);
         vectorDCSValue.clear();
     }
 }

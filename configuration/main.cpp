@@ -9,14 +9,14 @@ int main(int argc, char **argv) {
 
   const char* configName;
 
-  auto copnfigLogger = LoggerManager::getConfigLogger();
+  auto configLogger = LoggerManager::getConfigLogger();
 
   std::string userInput;
-  copnfigLogger->info("Please enter the config file name: ");
+  configLogger->info("Please enter the config file name: ");
   std::cin >> userInput;
 
   configName = userInput.c_str();
-  copnfigLogger->info("Get a file: {}", configName);
+  configLogger->info("Get a file: {}", configName);
   yyparseInit(configName);
   yyparse();
   yyparseCleanup();

@@ -5,6 +5,6 @@ void ParallelSiteEnable::setSites(const std::string infoSites) {
 }
 
 void ParallelSiteEnable::printData() const {
-    auto copnfigLogger = LoggerManager::getConfigLogger();
-    copnfigLogger->info("PSTE Data: Sites: {}", sites);
+    auto configLogger = LoggerManager::getConfigLogger();
+    configLogger->info("PSTE Data: Sites: {}", sites);
 }

@@ -8,8 +8,8 @@ void DefinePinName::addData(const std::string infoChannelNo,
         }
 
 void DefinePinName::printData() const {
-    auto copnfigLogger = LoggerManager::getConfigLogger();
-    copnfigLogger->info("DefinePinName Data:");
+    auto configLogger = LoggerManager::getConfigLogger();
+    configLogger->info("DefinePinName Data:");
 
     std::string vectorChannelNo;
     std::string vectorPinNo;
@@ -19,7 +19,7 @@ void DefinePinName::printData() const {
         for (const auto channel : channelNo) {
             vectorChannelNo += channel + ",";
         }
-        copnfigLogger->info("Channel No: {}", vectorChannelNo);
+        configLogger->info("Channel No: {}", vectorChannelNo);
         vectorChannelNo.clear();
     }
 
@@ -27,7 +27,7 @@ void DefinePinName::printData() const {
         for (const auto pinNo : pinNo) {
             vectorPinNo += pinNo + ",";
         }
-        copnfigLogger->info("Pin No: {}", vectorPinNo);
+        configLogger->info("Pin No: {}", vectorPinNo);
         vectorPinNo.clear();
     }
 
@@ -35,7 +35,7 @@ void DefinePinName::printData() const {
         for (const auto pin : pin) {
             vectorPin += pin + ",";
         }
-        copnfigLogger->info("Pin: {}", vectorPin);
+        configLogger->info("Pin: {}", vectorPin);
         vectorPin.clear();
     }
 }

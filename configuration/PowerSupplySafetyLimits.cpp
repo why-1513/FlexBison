@@ -11,8 +11,8 @@ void PowerSupplySafetyLimits::addData(const std::string infoMinVol, const std::s
 }
 
 void PowerSupplySafetyLimits::printPinList() const {
-    auto copnfigLogger = LoggerManager::getConfigLogger();
-    copnfigLogger->info("PSSL Pinlist:");
+    auto configLogger = LoggerManager::getConfigLogger();
+    configLogger->info("PSSL Pinlist:");
 
     if(!pinlist.empty()){
         for (const auto pinGroup : pinlist) {
@@ -20,15 +20,15 @@ void PowerSupplySafetyLimits::printPinList() const {
             for (const auto pin : pinGroup) {
                 vectorContents += pin + ",";
             }
-            copnfigLogger->info(vectorContents);
+            configLogger->info(vectorContents);
             vectorContents.clear();
         }
     }    
 }
 
 void PowerSupplySafetyLimits::printData() const {
-    auto copnfigLogger = LoggerManager::getConfigLogger();
-    copnfigLogger->info("PSSL Data:");
+    auto configLogger = LoggerManager::getConfigLogger();
+    configLogger->info("PSSL Data:");
 
     std::string vectorMinVoltage;
     std::string vectorMaxVoltage;
@@ -39,7 +39,7 @@ void PowerSupplySafetyLimits::printData() const {
         for (const auto vol : minVoltage) {
             vectorMinVoltage += vol + ",";
         }
-        copnfigLogger->info("MinVoltage: {}", vectorMinVoltage);
+        configLogger->info("MinVoltage: {}", vectorMinVoltage);
         vectorMinVoltage.clear();
     }
 
@@ -47,7 +47,7 @@ void PowerSupplySafetyLimits::printData() const {
         for (const auto vol : maxVoltage) {
             vectorMaxVoltage += vol + ",";
         }
-        copnfigLogger->info("MaxVoltage: {}", vectorMaxVoltage);
+        configLogger->info("MaxVoltage: {}", vectorMaxVoltage);
         vectorMaxVoltage.clear();
     }
 
@@ -55,7 +55,7 @@ void PowerSupplySafetyLimits::printData() const {
         for (const auto current : maxSourceCurrent) {
             vectorMaxSourceCurrent += current + ",";
         }
-        copnfigLogger->info("MaxSourceCurrent: {}", vectorMaxSourceCurrent);
+        configLogger->info("MaxSourceCurrent: {}", vectorMaxSourceCurrent);
         vectorMaxSourceCurrent.clear();
     }
 
@@ -63,7 +63,7 @@ void PowerSupplySafetyLimits::printData() const {
         for (const auto current : maxSinkCurrent) {
             vectorMaxSinkCurrent += current + ",";
         }
-        copnfigLogger->info("MaxSinkCurrent: {}", vectorMaxSinkCurrent);
+        configLogger->info("MaxSinkCurrent: {}", vectorMaxSinkCurrent);
         vectorMaxSinkCurrent.clear();
     }
 }
