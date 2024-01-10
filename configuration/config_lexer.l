@@ -6,7 +6,9 @@
 
 #define SAVE_TOKEN yylval.string = new std::string(yytext)
 #define TOKEN(t) ( yylval.token = t)
-#define ERRORLOG(t) spdlog::error("Unknown token: {}", t)
+#define ERRORLOG(t) configLogger->error("Error: Unknown token: {}", t)
+
+auto configLogger = LoggerManager::getConfigLogger();
 
 static FILE* yyparseFilePtr;
 
