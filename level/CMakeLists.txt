@@ -12,7 +12,9 @@ execute_process(COMMAND
 add_executable(level
     ${CMAKE_CURRENT_BINARY_DIR}/main.cpp
     ${CMAKE_CURRENT_BINARY_DIR}/level_lexer.cpp
-    ${CMAKE_CURRENT_BINARY_DIR}/level_parser.cpp)
+    ${CMAKE_CURRENT_BINARY_DIR}/level_parser.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/LevelAST.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/LoggerManager.cpp)
 
 target_link_libraries(level PUBLIC
     -lm)

@@ -9,11 +9,14 @@ int main(int argc, char **argv) {
   
   const char* levelName;
   
-  std::cout << "Please enter the level file name: ";
+  auto levelLogger = LoggerManager::getLevelLogger();
+
   std::string userInput;
+  levelLogger->info("Please enter the level file name: ");
   std::cin >> userInput;
 
   levelName = userInput.c_str();
+  levelLogger->info("Get a file: {}", levelName);
   yyparseInit(levelName);
   yyparse();
   yyparseCleanup();

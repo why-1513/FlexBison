@@ -7,7 +7,8 @@
 extern int yylex();
 void yyerror(const char* s)
 {
-	printf("Error: %s\n", s);
+	auto levelLogger = LoggerManager::getLevelLogger();
+	levelLogger->error("Error: {}", s);
 }
 std::shared_ptr<LevelFile> levelfile = std::make_shared<LevelFile>();
 std::vector<std::string> pinlist;
