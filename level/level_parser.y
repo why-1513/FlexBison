@@ -1,6 +1,5 @@
 %{
 #include <string>
-
 #include "level_parser.hpp"
 #include "LevelAST.h"
 
@@ -12,8 +11,8 @@ void yyerror(const char* s)
 }
 std::shared_ptr<LevelFile> levelfile = std::make_shared<LevelFile>();
 std::vector<std::string> pinlist;
-
 %}
+
 %union
 {
 
@@ -28,6 +27,9 @@ std::vector<std::string> pinlist;
 %token <string> TDOUBLE TINTEGER TNEGDOUBLE TNEGINTEGER TIDENTIFIER TLITERAL
 %token <token> TCOMMA TLPAREN TRPAREN TMINUS TLBRACKET TRBRACKET TMUL TEQUAL THASH TAT
 
+%type <string> dps_No dps_set_id voltage source_current sink_current impedance setup_time
+%type <string> pin_name
+
 %start level_file
 %defines
 
@@ -38,17 +40,50 @@ level_commands: level_commands level_command
 			   | level_command;
 
 level_command: hp93000 TCOMMA TIDENTIFIER TCOMMA TDOUBLE{
-	levelfile->setFileType(*$3);
+		levelfile->setFileType(*$3);
 	}
-	| PINSIN
-	| PINSOUT
-	| level_equation
-	| TAT
-	| SPECNAME TACTUAL TMINIMUM TMAXIMUM UNITSCOMMENT
-	| specdata
+	| PSLV pslv_parameters
 	;
 
-level_equation: TIDENTIFIER TEQUAL TIDENTIFIER
-specdata: TIDENTIFIER TDOUBLE TLBRACKET TIDENTIFIER TRBRACKET
-	| TIDENTIFIER TINTEGER TLBRACKET TIDENTIFIER TRBRACKET
+pslv_parameters: dps_No TCOMMA voltage TCOMMA source_current TCOMMA impedance TCOMMA setup_time TCOMMA TLPAREN pin_names TRPAREN{
+		levelfile->pslv->addData(*$1,"unused",*$3,*$5,"unused",*$7,*$9,pinlist);
+	}
+	| dps_set_id TCOMMA voltage TCOMMA source_current TCOMMA impedance TCOMMA setup_time TCOMMA TLPAREN pin_names TRPAREN{
+		levelfile->pslv->addData("unused",*$1,*$3,*$5,"unused",*$7,*$9,pinlist);
+	}
+	| dps_No TCOMMA voltage TCOMMA source_current TCOMMA sink_current TCOMMA impedance TCOMMA setup_time TCOMMA TLPAREN pin_names TRPAREN{
+		levelfile->pslv->addData(*$1,"unused",*$3,*$5,*$7,*$9,*$11,pinlist);
+	}
+	| dps_set_id TCOMMA voltage TCOMMA source_current TCOMMA sink_current TCOMMA impedance TCOMMA setup_time TCOMMA TLPAREN pin_names TRPAREN{
+		levelfile->pslv->addData("unused",*$1,*$3,*$5,*$7,*$9,*$11,pinlist);
+	}	
+	;
+
+dps_No: TIDENTIFIER;
+dps_set_id: TINTEGER
+	| TDOUBLE
+	;
+voltage: TINTEGER
+	| TDOUBLE
+	;
+source_current: TINTEGER
+	| TDOUBLE
+	;
+sink_current: TINTEGER
+	| TDOUBLE
+	;
+impedance: TIDENTIFIER;
+setup_time: TNEGINTEGER
+	| TINTEGER
+	;
+
+pin_names: pin_names TCOMMA pin_name {
+	pinlist.push_back(*$3);
+}
+	| pin_name {
+		pinlist = std::vector<std::string>();
+		pinlist.push_back(*$1);
+	};
+pin_name: TIDENTIFIER;
+
 %%

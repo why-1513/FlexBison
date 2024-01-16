@@ -21,5 +21,8 @@ int main(int argc, char **argv) {
   yyparse();
   yyparseCleanup();
   
+  levelfile->pslv->printData();
+  levelfile->pslv->printPinList();
+  
   return 0;
 }

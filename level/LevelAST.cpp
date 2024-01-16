@@ -1,6 +1,6 @@
 #include "LevelAST.h"
 
-LevelFile::LevelFile() {}
+LevelFile::LevelFile() : pslv(std::make_shared<PowerSupplyLevel>()) {}
 
 void LevelFile::setFileType(const std::string type) {
     auto levelLogger = LoggerManager::getLevelLogger();

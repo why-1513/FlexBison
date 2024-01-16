@@ -4,7 +4,7 @@
 #include <vector>
 #include <memory>
 #include <string>
-
+#include "PowerSupplyLevel.h"
 #include "LoggerManager.h"
 
 
@@ -15,6 +15,8 @@ public:
     std::string filetype;
 
     void setFileType(const std::string type);
+
+    std::shared_ptr<PowerSupplyLevel> pslv;
     
 };
 
