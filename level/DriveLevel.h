@@ -14,7 +14,7 @@ public:
 
     std::vector<std::vector<std::string>> pinlist;
 
-    void addData(const std::string infoLevelSetNo, const std::string infoLevelSerId,
+    void addData(const std::string infoLevelSetNo, const std::string infoLevelSetId,
                  const std::string infoLogicLevel0, const std::string infoLogicLevel1,
                  const std::vector<std::string> infoPinList);
 
