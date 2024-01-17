@@ -1,5 +1,5 @@
-#ifndef RECIVELEVEL_H
-#define RECIVELEVEL_H
+#ifndef RECEIVELEVEL_H
+#define RECEIVELEVEL_H
 
 #include <vector>
 #include <string>
@@ -24,4 +24,4 @@ public:
     void printData() const;
 };
 
-#endif // RECIVELEVEL_H
+#endif // RECEIVELEVEL_H
