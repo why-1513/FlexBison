@@ -6,7 +6,7 @@
 #include <string>
 #include "PowerSupplyLevel.h"
 #include "DriveLevel.h"
-#include "ReciveLevel.h"
+#include "ReceiveLevel.h"
 #include "TERMinationMode.h"
 #include "ClampLevel.h"
 #include "LevelSetsUsedExtended.h"
