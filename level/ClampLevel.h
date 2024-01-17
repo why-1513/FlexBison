@@ -15,7 +15,7 @@ public:
 
     std::vector<std::vector<std::string>> pinlist;
 
-    void addData(const std::string infoLevelSet, const std::string infolevelSetId,
+    void addData(const std::string infoLevelSet, const std::string infoLevelSetId,
                  const std::string infoClampMode, const std::string infoLowClampLevel,
                  const std::string infoHighClampLevel, const std::vector<std::string> infoPinList);
 
