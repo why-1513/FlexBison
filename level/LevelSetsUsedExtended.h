@@ -1,7 +1,6 @@
 #ifndef LEVELSETSUSEDEXTENDED_H
 #define LEVELSETSUSEDEXTENDED_H
 
-#include <vector>
 #include <string>
 #include "LoggerManager.h"
 
