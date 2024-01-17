@@ -5,6 +5,11 @@
 #include <memory>
 #include <string>
 #include "PowerSupplyLevel.h"
+#include "DriveLevel.h"
+#include "ReciveLevel.h"
+#include "TERMinationMode.h"
+#include "ClampLevel.h"
+#include "LevelSetsUsedExtended.h"
 #include "LoggerManager.h"
 
 
@@ -17,6 +22,11 @@ public:
     void setFileType(const std::string type);
 
     std::shared_ptr<PowerSupplyLevel> pslv;
+    std::shared_ptr<DriveLevel> drlv;
+    std::shared_ptr<ReceiveLevel> rclv;
+    std::shared_ptr<TERMinationMode> term;
+    std::shared_ptr<ClampLevel> clmp;
+    std::shared_ptr<LevelSetsUsedExtended> lsux;
     
 };
 
