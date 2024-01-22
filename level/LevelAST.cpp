@@ -1,6 +1,11 @@
 #include "LevelAST.h"
 
-LevelFile::LevelFile() : pslv(std::make_shared<PowerSupplyLevel>()) {}
+LevelFile::LevelFile() : pslv(std::make_shared<PowerSupplyLevel>()),
+                         drlv(std::make_shared<DriveLevel>()),
+                         rclv(std::make_shared<ReceiveLevel>()),
+                         term(std::make_shared<TERMinationMode>()),
+                         clmp(std::make_shared<ClampLevel>()),
+                         lsux(std::make_shared<LevelSetsUsedExtended>()) {}
 
 void LevelFile::setFileType(const std::string type) {
     auto levelLogger = LoggerManager::getLevelLogger();
