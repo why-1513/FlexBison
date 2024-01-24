@@ -28,6 +28,7 @@ std::vector<std::string> pinlist;
 %token <token> TCOMMA TLPAREN TRPAREN TMINUS TLBRACKET TRBRACKET TMUL TEQUAL THASH TAT
 
 %type <string> dps_No dps_set_id voltage source_current sink_current impedance setup_time
+%type <string> level_set_no level_set_id logic_0_level logic_1_level
 %type <string> pin_name
 
 %start level_file
@@ -43,6 +44,7 @@ level_command: hp93000 TCOMMA TIDENTIFIER TCOMMA TDOUBLE{
 		levelfile->setFileType(*$3);
 	}
 	| PSLV pslv_parameters
+	| DRLV drlv_parameters
 	;
 
 pslv_parameters: dps_No TCOMMA voltage TCOMMA source_current TCOMMA impedance TCOMMA setup_time TCOMMA TLPAREN pin_names TRPAREN{
@@ -76,6 +78,39 @@ impedance: TIDENTIFIER;
 setup_time: TNEGINTEGER
 	| TINTEGER
 	;
+
+drlv_parameters: level_set_no TCOMMA logic_0_level TCOMMA logic_1_level TCOMMA TLPAREN pin_names TRPAREN{
+	levelfile->drlv->addData(*$1,"unused",*$3,*$5,pinlist);
+}
+	| level_set_id TCOMMA logic_0_level TCOMMA logic_1_level TCOMMA TLPAREN pin_names TRPAREN{
+		levelfile->drlv->addData("unused",*$1,*$3,*$5,pinlist);
+	}
+	| level_set_no TCOMMA logic_0_level TCOMMA TCOMMA TLPAREN pin_names TRPAREN{
+		levelfile->drlv->addData(*$1,"unused",*$3,"unused",pinlist);
+	}
+	| level_set_id TCOMMA logic_0_level TCOMMA TCOMMA TLPAREN pin_names TRPAREN{
+		levelfile->drlv->addData("unused",*$1,*$3,"unused",pinlist);
+	}
+	| level_set_no TCOMMA TCOMMA logic_1_level TCOMMA TLPAREN pin_names TRPAREN{
+		levelfile->drlv->addData(*$1,"unused","unused",*$4,pinlist);
+	}
+	| level_set_id TCOMMA TCOMMA logic_1_level TCOMMA TLPAREN pin_names TRPAREN{
+		levelfile->drlv->addData("unused",*$1,"unused",*$4,pinlist);
+	}
+	| level_set_no TCOMMA TCOMMA TCOMMA TLPAREN pin_names TRPAREN{
+		levelfile->drlv->addData(*$1,"unused","unused","unused",pinlist);
+	}
+	| level_set_id TCOMMA TCOMMA TCOMMA TLPAREN pin_names TRPAREN{
+		levelfile->drlv->addData("unused",*$1,"unused","unused",pinlist);
+	}
+	;
+level_set_no: TIDENTIFIER;
+level_set_id: TINTEGER
+	| TDOUBLE
+	;
+logic_0_level: TINTEGER;
+logic_1_level: TINTEGER;
+
 
 pin_names: pin_names TCOMMA pin_name {
 	pinlist.push_back(*$3);

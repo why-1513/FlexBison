@@ -23,6 +23,8 @@ int main(int argc, char **argv) {
   
   levelfile->pslv->printData();
   levelfile->pslv->printPinList();
+  levelfile->drlv->printData();
+  levelfile->drlv->printPinList();
   
   return 0;
 }
