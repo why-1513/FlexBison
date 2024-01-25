@@ -21,8 +21,8 @@ int main(int argc, char **argv) {
   yyparse();
   yyparseCleanup();
   
-  levelfile->rclv->printData();
-  levelfile->rclv->printPinList();
+  levelfile->term->printData();
+  levelfile->term->printPinList();
   
   return 0;
 }
