@@ -18,7 +18,8 @@ add_executable(level
     ${CMAKE_CURRENT_BINARY_DIR}/LevelAST.cpp
     ${CMAKE_CURRENT_BINARY_DIR}/LoggerManager.cpp
     ${CMAKE_CURRENT_BINARY_DIR}/PowerSupplyLevel.cpp
-    ${CMAKE_CURRENT_BINARY_DIR}/DriveLevel.cpp)
+    ${CMAKE_CURRENT_BINARY_DIR}/DriveLevel.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/ReceiveLevel.cpp)
 
 target_link_libraries(level PUBLIC
     -lm)
