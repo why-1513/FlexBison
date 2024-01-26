@@ -122,11 +122,12 @@ rclv_parameters: level_set_no TCOMMA logic_0_level TCOMMA TCOMMA TLPAREN pin_nam
 	;
 
 term_parameters:level_set_no TCOMMA term_mode TCOMMA TCOMMA TCOMMA TCOMMA TCOMMA TCOMMA TLPAREN pin_names TRPAREN{
-	levelfile->term->addData(*$1,"unused",*$3,"unused","unused","unused","unused","unused","unused",pinlist);
+	levelfile->term->addData(*$1,"unused",*$3,"unused","unused","unused","unused","unused",pinlist);
 }
 	| level_set_id TCOMMA term_mode TCOMMA TCOMMA TCOMMA TCOMMA TCOMMA TCOMMA TLPAREN pin_names TRPAREN{
-		levelfile->term->addData("unused",*$1,*$3,"unused","unused","unused","unused","unused","unused",pinlist);
+		levelfile->term->addData("unused",*$1,*$3,"unused","unused","unused","unused","unused",pinlist);
 	}
+	| level_set_no TCOMMA term_mode TCOMMA 
 	;
 
 level_set_no: TIDENTIFIER;
