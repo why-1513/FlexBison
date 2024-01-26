@@ -22,7 +22,7 @@ void PowerSupplyLevel::printPinList() const {
         for (const auto pinGroup : pinlist) {
             std::string vectorContents;
             for (const auto pin : pinGroup) {
-                vectorContents += pin + ",";
+                vectorContents += pin + " ";
             }
             levelLogger->info(vectorContents);
             vectorContents.clear();
@@ -44,7 +44,7 @@ void PowerSupplyLevel::printData() const {
 
     if(!dpsNo.empty()){
         for (const auto dpsno : dpsNo) {
-            vectorDpsNo += dpsno + ",";
+            vectorDpsNo += dpsno + " ";
         }
         levelLogger->info("DpsNo: {}", vectorDpsNo);
         vectorDpsNo.clear();
@@ -52,7 +52,7 @@ void PowerSupplyLevel::printData() const {
 
     if(!dpsSetId.empty()){
         for (const auto id : dpsSetId) {
-            vectorDpsSetId += id + ",";
+            vectorDpsSetId += id + " ";
         }
         levelLogger->info("DpsSetId: {}", vectorDpsSetId);
         vectorDpsSetId.clear();
@@ -60,7 +60,7 @@ void PowerSupplyLevel::printData() const {
 
     if(!voltage.empty()){
         for (const auto vol : voltage) {
-            vectorVoltage += vol + ",";
+            vectorVoltage += vol + " ";
         }
         levelLogger->info("Voltage: {}", vectorVoltage);
         vectorVoltage.clear();
@@ -68,7 +68,7 @@ void PowerSupplyLevel::printData() const {
 
     if(!sourceCurrent.empty()){
         for (const auto current : sourceCurrent){
-            vectorSourceCurrent += current + ",";
+            vectorSourceCurrent += current + " ";
         }
         levelLogger->info("SourceCurrent: {}", vectorSourceCurrent);
         vectorSourceCurrent.clear();
@@ -76,7 +76,7 @@ void PowerSupplyLevel::printData() const {
 
     if(!sinkCurrent.empty()){
         for (const auto current : sinkCurrent){
-            vectorSinkCurrent += current + ",";
+            vectorSinkCurrent += current + " ";
         }
         levelLogger->info("SinkCurrent: {}", vectorSinkCurrent);
         vectorSinkCurrent.clear();
@@ -84,7 +84,7 @@ void PowerSupplyLevel::printData() const {
 
     if(!impedance.empty()){
         for (const auto imp : impedance){
-            vectorImpedance += imp + ",";
+            vectorImpedance += imp + " ";
         }
         levelLogger->info("Impedance: {}", vectorImpedance);
         vectorImpedance.clear();
@@ -92,7 +92,7 @@ void PowerSupplyLevel::printData() const {
 
     if(!setupTime.empty()){
         for (const auto setime : setupTime){
-            vectorSetupTime += setime + ",";
+            vectorSetupTime += setime + " ";
         }
         levelLogger->info("SetupTime: {}", vectorSetupTime );
         vectorSetupTime .clear();

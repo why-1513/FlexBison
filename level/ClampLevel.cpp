@@ -19,7 +19,7 @@ void ClampLevel::printPinList() const {
         for (const auto pinGroup : pinlist) {
             std::string vectorContents;
             for (const auto pin : pinGroup) {
-                vectorContents += pin + ",";
+                vectorContents += pin + " ";
             }
             levelLogger->info(vectorContents);
             vectorContents.clear();
@@ -39,7 +39,7 @@ void ClampLevel::printData() const {
 
     if(!levelSet.empty()){
         for (const auto set : levelSet) {
-            vectorLevelSet += set + ",";
+            vectorLevelSet += set + " ";
         }
         levelLogger->info("levelSet: {}", vectorLevelSet);
         vectorLevelSet.clear();
@@ -47,7 +47,7 @@ void ClampLevel::printData() const {
 
     if(!levelSetId.empty()){
         for (const auto id : levelSetId) {
-            vectorLevelSetId += id + ",";
+            vectorLevelSetId += id + " ";
         }
         levelLogger->info("levelSetId: {}", vectorLevelSetId);
         vectorLevelSetId.clear();
@@ -55,7 +55,7 @@ void ClampLevel::printData() const {
 
     if(!clampMode.empty()){
         for (const auto mode : clampMode){
-            vectorClampMode += mode + ",";
+            vectorClampMode += mode + " ";
         }
         levelLogger->info("clampMode: {}", vectorClampMode);
         vectorClampMode.clear();
@@ -63,7 +63,7 @@ void ClampLevel::printData() const {
 
     if(!lowClampLevel.empty()){
         for (const auto level : lowClampLevel) {
-            vectorLowClampLevel += level + ",";
+            vectorLowClampLevel += level + " ";
         }
         levelLogger->info("lowClampLevel: {}", vectorLowClampLevel);
         vectorLowClampLevel.clear();
@@ -71,7 +71,7 @@ void ClampLevel::printData() const {
 
     if(!highClampLevel.empty()){
         for (const auto level : highClampLevel){
-            vectorHighClampLevel += level + ",";
+            vectorHighClampLevel += level + " ";
         }
         levelLogger->info("highClampLevel: {}", vectorHighClampLevel);
         vectorHighClampLevel.clear();

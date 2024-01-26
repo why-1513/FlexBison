@@ -19,7 +19,7 @@ void ReceiveLevel::printPinList() const {
         for (const auto pinGroup : pinlist) {
             std::string vectorContents;
             for (const auto pin : pinGroup) {
-                vectorContents += pin + ",";
+                vectorContents += pin + " ";
             }
             levelLogger->info(vectorContents);
             vectorContents.clear();
@@ -39,7 +39,7 @@ void ReceiveLevel::printData() const {
 
     if(!levelSetNo.empty()){
         for (const auto setno : levelSetNo) {
-            vectorLevelSetNo += setno + ",";
+            vectorLevelSetNo += setno + " ";
         }
         levelLogger->info("levelSetNo: {}", vectorLevelSetNo);
         vectorLevelSetNo.clear();
@@ -47,7 +47,7 @@ void ReceiveLevel::printData() const {
 
     if(!levelSetId.empty()){
         for (const auto id : levelSetId) {
-            vectorLevelSetId += id + ",";
+            vectorLevelSetId += id + " ";
         }
         levelLogger->info("levelSetId: {}", vectorLevelSetId);
         vectorLevelSetId.clear();
@@ -55,7 +55,7 @@ void ReceiveLevel::printData() const {
 
     if(!vth.empty()){
         for (const auto v : vth){
-            vectorVth += v + ",";
+            vectorVth += v + " ";
         }
         levelLogger->info("vth: {}", vectorVth);
         vectorVth.clear();
@@ -63,7 +63,7 @@ void ReceiveLevel::printData() const {
 
     if(!logicLevel0.empty()){
         for (const auto vol : logicLevel0) {
-            vectorLogicLevel0 += vol + ",";
+            vectorLogicLevel0 += vol + " ";
         }
         levelLogger->info("logicLevel0: {}", vectorLogicLevel0);
         vectorLogicLevel0.clear();
@@ -71,7 +71,7 @@ void ReceiveLevel::printData() const {
 
     if(!logicLevel1.empty()){
         for (const auto current : logicLevel1){
-            vectorLogicLevel1 += current + ",";
+            vectorLogicLevel1 += current + " ";
         }
         levelLogger->info("logicLevel1: {}", vectorLogicLevel1);
         vectorLogicLevel1.clear();
