@@ -15,7 +15,7 @@ void PowerSupplyLoadCapacitance::printPinList() const {
         for (const auto pinGroup : pinlist) {
             std::string vectorContents;
             for (const auto pin : pinGroup) {
-                vectorContents += pin + ",";
+                vectorContents += pin + " ";
             }
             configLogger->info(vectorContents);
             vectorContents.clear();            
@@ -32,7 +32,7 @@ void PowerSupplyLoadCapacitance::printData() const {
 
     if(!value.empty()){
         for (const auto val : value) {
-            vectorValue += val + ",";
+            vectorValue += val + " ";
         }
         configLogger->info("Value: {}", vectorValue);
         vectorValue.clear();
@@ -40,7 +40,7 @@ void PowerSupplyLoadCapacitance::printData() const {
     
     if(!DCSValue.empty()){
         for (const auto val : DCSValue) {
-            vectorDCSValue += val + ",";
+            vectorDCSValue += val + " ";
         }
         configLogger->info("DCSValue: {}", vectorDCSValue);
         vectorDCSValue.clear();

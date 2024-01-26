@@ -16,7 +16,7 @@ void CONFGuration::printPinList() const {
         for (const auto pinGroup : pinlist) {
             std::string vectorContents;
             for (const auto pin : pinGroup) {
-                vectorContents += pin + ",";
+                vectorContents += pin + " ";
             }
             configLogger->info(vectorContents);
             vectorContents.clear();
@@ -34,7 +34,7 @@ void CONFGuration::printData() const {
 
     if(!context.empty()){
         for (const auto text : context) {
-            vectorContext += text + ",";
+            vectorContext += text + " ";
         }
         configLogger->info("Context: {}", vectorContext);
         vectorContext.clear();
@@ -42,7 +42,7 @@ void CONFGuration::printData() const {
 
     if(!pinType.empty()){
         for (const auto type : pinType) {
-            vectorPinType += type + ",";
+            vectorPinType += type + " ";
         }
         configLogger->info("PinType: {}", vectorPinType);
         vectorPinType.clear();
@@ -50,7 +50,7 @@ void CONFGuration::printData() const {
 
     if(!pinOperMode.empty()){
         for (const auto mode : pinOperMode) {
-            vectorPinOperMode += mode + ",";
+            vectorPinOperMode += mode + " ";
         }
         configLogger->info("PinOperMode: {}", vectorPinOperMode);
         vectorPinOperMode.clear();

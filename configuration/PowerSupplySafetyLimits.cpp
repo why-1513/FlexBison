@@ -18,7 +18,7 @@ void PowerSupplySafetyLimits::printPinList() const {
         for (const auto pinGroup : pinlist) {
             std::string vectorContents;
             for (const auto pin : pinGroup) {
-                vectorContents += pin + ",";
+                vectorContents += pin + " ";
             }
             configLogger->info(vectorContents);
             vectorContents.clear();
@@ -37,7 +37,7 @@ void PowerSupplySafetyLimits::printData() const {
 
     if(!minVoltage.empty()){
         for (const auto vol : minVoltage) {
-            vectorMinVoltage += vol + ",";
+            vectorMinVoltage += vol + " ";
         }
         configLogger->info("MinVoltage: {}", vectorMinVoltage);
         vectorMinVoltage.clear();
@@ -45,7 +45,7 @@ void PowerSupplySafetyLimits::printData() const {
 
     if(!maxVoltage.empty()){
         for (const auto vol : maxVoltage) {
-            vectorMaxVoltage += vol + ",";
+            vectorMaxVoltage += vol + " ";
         }
         configLogger->info("MaxVoltage: {}", vectorMaxVoltage);
         vectorMaxVoltage.clear();
@@ -53,7 +53,7 @@ void PowerSupplySafetyLimits::printData() const {
 
     if(!maxSourceCurrent.empty()){
         for (const auto current : maxSourceCurrent) {
-            vectorMaxSourceCurrent += current + ",";
+            vectorMaxSourceCurrent += current + " ";
         }
         configLogger->info("MaxSourceCurrent: {}", vectorMaxSourceCurrent);
         vectorMaxSourceCurrent.clear();
@@ -61,7 +61,7 @@ void PowerSupplySafetyLimits::printData() const {
 
     if(!maxSinkCurrent.empty()){
         for (const auto current : maxSinkCurrent) {
-            vectorMaxSinkCurrent += current + ",";
+            vectorMaxSinkCurrent += current + " ";
         }
         configLogger->info("MaxSinkCurrent: {}", vectorMaxSinkCurrent);
         vectorMaxSinkCurrent.clear();

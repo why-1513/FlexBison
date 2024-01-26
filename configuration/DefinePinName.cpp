@@ -17,7 +17,7 @@ void DefinePinName::printData() const {
 
     if(!channelNo.empty()){
         for (const auto channel : channelNo) {
-            vectorChannelNo += channel + ",";
+            vectorChannelNo += channel + " ";
         }
         configLogger->info("Channel No: {}", vectorChannelNo);
         vectorChannelNo.clear();
@@ -25,7 +25,7 @@ void DefinePinName::printData() const {
 
     if(!pinNo.empty()){
         for (const auto pinNo : pinNo) {
-            vectorPinNo += pinNo + ",";
+            vectorPinNo += pinNo + " ";
         }
         configLogger->info("Pin No: {}", vectorPinNo);
         vectorPinNo.clear();
@@ -33,7 +33,7 @@ void DefinePinName::printData() const {
 
     if(!pin.empty()){
         for (const auto pin : pin) {
-            vectorPin += pin + ",";
+            vectorPin += pin + " ";
         }
         configLogger->info("Pin: {}", vectorPin);
         vectorPin.clear();

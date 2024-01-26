@@ -15,7 +15,7 @@ void DefineGroup::printPinList() const {
         for (const auto pinGroup : pinlist) {
             std::string vectorContents;
             for (const auto pin : pinGroup) {
-                vectorContents += pin + ",";
+                vectorContents += pin + " ";
             }
             configLogger->info(vectorContents);
             vectorContents.clear();
@@ -32,7 +32,7 @@ void DefineGroup::printData() const {
 
     if(!pinType.empty()){
         for (const auto type : pinType) {
-            vectorPinType += type + ",";
+            vectorPinType += type + " ";
         }
         configLogger->info("PinType: {}", vectorPinType);
         vectorPinType.clear();
@@ -40,7 +40,7 @@ void DefineGroup::printData() const {
 
     if(!pinGroup.empty()){
         for (const auto group : pinGroup) {
-            vectorPinGroup += group + ",";
+            vectorPinGroup += group + " ";
         }
         configLogger->info("PinGroup: {}", vectorPinGroup);
         vectorPinGroup.clear();
