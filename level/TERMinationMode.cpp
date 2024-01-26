@@ -26,7 +26,7 @@ void TERMinationMode::printPinList() const {
         for (const auto pinGroup : pinlist) {
             std::string vectorContents;
             for (const auto pin : pinGroup) {
-                vectorContents += pin + ",";
+                vectorContents += pin + " ";
             }
             levelLogger->info(vectorContents);
             vectorContents.clear();
@@ -44,7 +44,7 @@ void TERMinationMode::printData() const {
 
     if(!levelSetNo.empty()){
         for (const auto setno : levelSetNo) {
-            vectorLevelSetNo += setno + ",";
+            vectorLevelSetNo += setno + " ";
         }
         levelLogger->info("levelSetNo: {}", vectorLevelSetNo);
         vectorLevelSetNo.clear();
@@ -52,7 +52,7 @@ void TERMinationMode::printData() const {
 
     if(!levelSetId.empty()){
         for (const auto id : levelSetId) {
-            vectorLevelSetId += id + ",";
+            vectorLevelSetId += id + " ";
         }
         levelLogger->info("levelSetId: {}", vectorLevelSetId);
         vectorLevelSetId.clear();
@@ -60,7 +60,7 @@ void TERMinationMode::printData() const {
 
     if(!termMode.empty()){
         for (const auto v : termMode){
-            vectorTermMode += v + ",";
+            vectorTermMode += v + " ";
         }
         levelLogger->info("termMode: {}", vectorTermMode);
         vectorTermMode.clear();

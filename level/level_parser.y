@@ -27,8 +27,8 @@ std::vector<std::string> pinlist;
 %token <string> TDOUBLE TINTEGER TNEGDOUBLE TNEGINTEGER TIDENTIFIER TLITERAL
 %token <token> TCOMMA TLPAREN TRPAREN TMINUS TLBRACKET TRBRACKET TMUL TEQUAL THASH TAT
 
-%type <string> dps_No dps_set_id voltage source_current sink_current impedance setup_time
-%type <string> level_set_no level_set_id logic_0_level logic_1_level term_mode
+%type <string> dps_No dps_set_id voltage source_current sink_current impedance setup_time level_set_no level_set_id
+%type <string> logic_0_level logic_1_level term_mode param_1 param_2 param_3 l_range h_range
 %type <string> pin_name
 
 %start level_file
@@ -127,7 +127,30 @@ term_parameters:level_set_no TCOMMA term_mode TCOMMA TCOMMA TCOMMA TCOMMA TCOMMA
 	| level_set_id TCOMMA term_mode TCOMMA TCOMMA TCOMMA TCOMMA TCOMMA TCOMMA TLPAREN pin_names TRPAREN{
 		levelfile->term->addData("unused",*$1,*$3,"unused","unused","unused","unused","unused",pinlist);
 	}
-	| level_set_no TCOMMA term_mode TCOMMA 
+	| level_set_no TCOMMA term_mode TCOMMA param_1 TCOMMA TCOMMA TCOMMA TCOMMA TCOMMA TLPAREN pin_names TRPAREN{
+		levelfile->term->addData(*$1,"unused",*$3,*$5,"unused","unused","unused","unused",pinlist);
+	}
+	| level_set_id TCOMMA term_mode TCOMMA param_1 TCOMMA TCOMMA TCOMMA TCOMMA TCOMMA TLPAREN pin_names TRPAREN{
+		levelfile->term->addData("unused",*$1,*$3,*$5,"unused","unused","unused","unused",pinlist);
+	}
+	| level_set_no TCOMMA term_mode TCOMMA param_1 TCOMMA param_2 TCOMMA TCOMMA TCOMMA TCOMMA TLPAREN pin_names TRPAREN{
+		levelfile->term->addData(*$1,"unused",*$3,*$5,*$7,"unused","unused","unused",pinlist);
+	}
+	| level_set_id TCOMMA term_mode TCOMMA param_1 TCOMMA param_2 TCOMMA TCOMMA TCOMMA TCOMMA TLPAREN pin_names TRPAREN{
+		levelfile->term->addData("unused",*$1,*$3,*$5,*$7,"unused","unused","unused",pinlist);
+	}
+	| level_set_no TCOMMA term_mode TCOMMA param_1 TCOMMA param_2 TCOMMA param_3 TCOMMA TCOMMA TCOMMA TLPAREN pin_names TRPAREN{
+		levelfile->term->addData(*$1,"unused",*$3,*$5,*$7,*$9,"unused","unused",pinlist);
+	}
+	| level_set_id TCOMMA term_mode TCOMMA param_1 TCOMMA param_2 TCOMMA param_3 TCOMMA TCOMMA TCOMMA TLPAREN pin_names TRPAREN{
+		levelfile->term->addData("unused",*$1,*$3,*$5,*$7,*$9,"unused","unused",pinlist);
+	}
+	| level_set_no TCOMMA term_mode TCOMMA param_1 TCOMMA param_2 TCOMMA param_3 TCOMMA l_range TCOMMA h_range TCOMMA TLPAREN pin_names TRPAREN{
+		levelfile->term->addData(*$1,"unused",*$3,*$5,*$7,*$9,*$11,*$13,pinlist);
+	}
+	| level_set_id TCOMMA term_mode TCOMMA param_1 TCOMMA param_2 TCOMMA param_3 TCOMMA l_range TCOMMA h_range TCOMMA TLPAREN pin_names TRPAREN{
+		levelfile->term->addData("unused",*$1,*$3,*$5,*$7,*$9,*$11,*$13,pinlist);
+	}
 	;
 
 level_set_no: TIDENTIFIER;
@@ -139,6 +162,35 @@ logic_0_level: TINTEGER
 	;
 logic_1_level: TINTEGER;
 term_mode: TIDENTIFIER;
+param_1: TINTEGER
+	| TDOUBLE
+	| TIDENTIFIER
+	| TNEGDOUBLE
+	| TNEGINTEGER
+	;
+param_2: TINTEGER
+	| TDOUBLE
+	| TIDENTIFIER
+	| TNEGDOUBLE
+	| TNEGINTEGER
+	;
+param_3: TINTEGER
+	| TDOUBLE
+	| TIDENTIFIER
+	| TNEGDOUBLE
+	| TNEGINTEGER
+	;
+l_range: TINTEGER
+	| TDOUBLE
+	| TNEGDOUBLE
+	| TNEGINTEGER
+	;
+h_range: TINTEGER
+	| TDOUBLE
+	| TNEGDOUBLE
+	| TNEGINTEGER
+	;
+
 
 pin_names: pin_names TCOMMA pin_name {
 	pinlist.push_back(*$3);
