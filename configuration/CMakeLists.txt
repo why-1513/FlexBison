@@ -6,24 +6,24 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 execute_process(COMMAND
-    flex -o ${CMAKE_CURRENT_BINARY_DIR}/config_lexer.cpp ${CMAKE_CURRENT_SOURCE_DIR}/config_lexer.l)
+    flex -o ${CMAKE_CURRENT_BINARY_DIR}/config_lexer.cpp ${CMAKE_CURRENT_SOURCE_DIR}/src/config_lexer.l)
 
 execute_process(COMMAND
-    bison -o ${CMAKE_CURRENT_BINARY_DIR}/config_parser.cpp ${CMAKE_CURRENT_SOURCE_DIR}/config_parser.y)
+    bison -o ${CMAKE_CURRENT_BINARY_DIR}/config_parser.cpp ${CMAKE_CURRENT_SOURCE_DIR}/src/config_parser.y)
 
 add_executable(configuration
-    ${CMAKE_CURRENT_BINARY_DIR}/main.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/src/main.cpp
     ${CMAKE_CURRENT_BINARY_DIR}/config_lexer.cpp
     ${CMAKE_CURRENT_BINARY_DIR}/config_parser.cpp
-    ${CMAKE_CURRENT_BINARY_DIR}/ConfigAST.cpp
-    ${CMAKE_CURRENT_BINARY_DIR}/DefinePinName.cpp
-    ${CMAKE_CURRENT_BINARY_DIR}/DefinePowerSupply.cpp
-    ${CMAKE_CURRENT_BINARY_DIR}/ParallelSiteEnable.cpp
-    ${CMAKE_CURRENT_BINARY_DIR}/CONFGuration.cpp
-    ${CMAKE_CURRENT_BINARY_DIR}/DefineGroup.cpp
-    ${CMAKE_CURRENT_BINARY_DIR}/PowerSupplyLoadCapacitance.cpp
-    ${CMAKE_CURRENT_BINARY_DIR}/PowerSupplySafetyLimits.cpp
-    ${CMAKE_CURRENT_BINARY_DIR}/LoggerManager.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/src/ConfigAST.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/src/DefinePinName.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/src/DefinePowerSupply.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/src/ParallelSiteEnable.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/src/CONFGuration.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/src/DefineGroup.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/src/PowerSupplyLoadCapacitance.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/src/PowerSupplySafetyLimits.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/src/LoggerManager.cpp
     )
 
 target_link_libraries(configuration PUBLIC
