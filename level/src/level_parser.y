@@ -29,6 +29,7 @@ std::vector<std::string> pinlist;
 
 %type <string> dps_No dps_set_id voltage source_current sink_current impedance setup_time level_set_no level_set_id
 %type <string> logic_0_level logic_1_level term_mode param_1 param_2 param_3 l_range h_range
+%type <string> clamp_mode low_clamp_level high_clamp_level lsux_parameter
 %type <string> pin_name
 
 %start level_file
@@ -47,6 +48,10 @@ level_command: hp93000 TCOMMA TIDENTIFIER TCOMMA TDOUBLE{
 	| DRLV drlv_parameters
 	| RCLV rclv_parameters
 	| TERM term_parameters
+	| CLMP clmp_parameters
+	| LSUX lsux_parameter{
+		levelfile->lsux->setLevelSetNo(*$2);
+	}
 	;
 
 pslv_parameters: dps_No TCOMMA voltage TCOMMA source_current TCOMMA impedance TCOMMA setup_time TCOMMA TLPAREN pin_names TRPAREN{
@@ -153,14 +158,42 @@ term_parameters:level_set_no TCOMMA term_mode TCOMMA TCOMMA TCOMMA TCOMMA TCOMMA
 	}
 	;
 
+clmp_parameters: level_set_no TCOMMA TCOMMA TCOMMA TCOMMA TLPAREN pin_names TRPAREN{
+	levelfile->clmp->addData(*$1,"unused","unused","unused","unused",pinlist);
+}
+	| level_set_id TCOMMA TCOMMA TCOMMA TCOMMA TLPAREN pin_names TRPAREN{
+		levelfile->clmp->addData("unused",*$1,"unused","unused","unused",pinlist);
+	}
+	| level_set_no TCOMMA clamp_mode TCOMMA TCOMMA TCOMMA TLPAREN pin_names TRPAREN{
+		levelfile->clmp->addData(*$1,"unused",*$3,"unused","unused",pinlist);
+	}
+	| level_set_id TCOMMA clamp_mode TCOMMA TCOMMA TCOMMA TLPAREN pin_names TRPAREN{
+		levelfile->clmp->addData("unused",*$1,*$3,"unused","unused",pinlist);
+	}
+	| level_set_no TCOMMA clamp_mode TCOMMA low_clamp_level TCOMMA TCOMMA TLPAREN pin_names TRPAREN{
+		levelfile->clmp->addData(*$1,"unused",*$3,*$5,"unused",pinlist);
+	}
+	| level_set_id TCOMMA clamp_mode TCOMMA low_clamp_level TCOMMA TCOMMA TLPAREN pin_names TRPAREN{
+		levelfile->clmp->addData("unused",*$1,*$3,*$5,"unused",pinlist);
+	}
+	| level_set_no TCOMMA clamp_mode TCOMMA low_clamp_level TCOMMA high_clamp_level TCOMMA TLPAREN pin_names TRPAREN{
+		levelfile->clmp->addData(*$1,"unused",*$3,*$5,*$7,pinlist);
+	}
+	| level_set_id TCOMMA clamp_mode TCOMMA low_clamp_level TCOMMA high_clamp_level TCOMMA TLPAREN pin_names TRPAREN{
+		levelfile->clmp->addData("unused",*$1,*$3,*$5,*$7,pinlist);
+	}
+	;
+
 level_set_no: TIDENTIFIER;
 level_set_id: TINTEGER
 	| TDOUBLE
 	;
+
 logic_0_level: TINTEGER
 	| TDOUBLE
 	;
 logic_1_level: TINTEGER;
+
 term_mode: TIDENTIFIER;
 param_1: TINTEGER
 	| TDOUBLE
@@ -191,6 +224,17 @@ h_range: TINTEGER
 	| TNEGINTEGER
 	;
 
+clamp_mode: TIDENTIFIER;
+low_clamp_level: TINTEGER
+	| TNEGINTEGER
+	;
+high_clamp_level: TINTEGER
+	| TNEGDOUBLE
+	;
+
+lsux_parameter: TINTEGER
+	| TIDENTIFIER
+	;
 
 pin_names: pin_names TCOMMA pin_name {
 	pinlist.push_back(*$3);
