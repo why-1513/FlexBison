@@ -12,6 +12,8 @@
 #include "LevelSetsUsedExtended.h"
 #include "LoggerManager.h"
 
+#include "EquationSpecificationTransfer.h"
+
 
 class LevelFile {
 public:
@@ -28,6 +30,7 @@ public:
     std::shared_ptr<ClampLevel> clmp;
     std::shared_ptr<LevelSetsUsedExtended> lsux;
     
+    std::vector<std::shared_ptr<EquationSpecificationTransfer>> eqsp;
 };
 
 extern std::shared_ptr<LevelFile> levelfile;

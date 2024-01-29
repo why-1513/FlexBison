@@ -22,7 +22,8 @@ add_executable(level
     ${CMAKE_CURRENT_BINARY_DIR}/src/ReceiveLevel.cpp
     ${CMAKE_CURRENT_BINARY_DIR}/src/TERMinationMode.cpp
     ${CMAKE_CURRENT_BINARY_DIR}/src/ClampLevel.cpp
-    ${CMAKE_CURRENT_BINARY_DIR}/src/LevelSetsUsedExtended.cpp)
+    ${CMAKE_CURRENT_BINARY_DIR}/src/LevelSetsUsedExtended.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/src/EquationSpecificationTransfer.cpp)
 
 target_link_libraries(level PUBLIC
     -lm)
