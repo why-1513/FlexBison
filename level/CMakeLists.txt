@@ -23,7 +23,10 @@ add_executable(level
     ${CMAKE_CURRENT_BINARY_DIR}/src/TERMinationMode.cpp
     ${CMAKE_CURRENT_BINARY_DIR}/src/ClampLevel.cpp
     ${CMAKE_CURRENT_BINARY_DIR}/src/LevelSetsUsedExtended.cpp
-    ${CMAKE_CURRENT_BINARY_DIR}/src/EquationSpecificationTransfer.cpp)
+    ${CMAKE_CURRENT_BINARY_DIR}/src/EquationSpecificationTransfer.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/src/EqnSet.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/src/LevelSet.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/src/SpecSet.cpp)
 
 target_link_libraries(level PUBLIC
     -lm)
