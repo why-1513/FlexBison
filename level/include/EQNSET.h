@@ -21,7 +21,7 @@ public:
 
     std::vector<std::shared_ptr<SpecSet>> specSets;
 
-    void setEqnSetNumber(const std::string infoNumber, const std::string infoDescription);
+    void setNumber(const std::string infoNumber, const std::string infoDescription);
 
     void addSpecsData(const std::string infoSpceName, const std::string infoSpecUnit);
     void addDpsPinsData(const std::string infoDpsPinName, const std::string infoDpsPinValue);

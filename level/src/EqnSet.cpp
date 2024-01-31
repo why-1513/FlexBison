@@ -1,6 +1,6 @@
 #include "EqnSet.h"
 
-void EqnSet::setEqnSetNumber(const std::string infoNumber, const std::string infoDescription){
+void EqnSet::setNumber(const std::string infoNumber, const std::string infoDescription){
     equationSetNumber = infoNumber;
     equationSetDescription = infoDescription;
 }
