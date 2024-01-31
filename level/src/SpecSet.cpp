@@ -16,7 +16,7 @@ void SpecSet::addData(const std::string infoSpecName, const std::string infoSetu
 
 void SpecSet::printSetNumber() const {
     auto levelLogger = LoggerManager::getLevelLogger();
-    levelLogger->info("SpecSet Name: {}", specName);
+    levelLogger->info("SpecSet Name: {}", specSetNumber);
     levelLogger->info("SpecSet Description: {}", specSetDescription);
 }
 
