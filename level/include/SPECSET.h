@@ -10,10 +10,10 @@ public:
     std::string specSetNumber;
     std::string specSetDescription;
 
-    std::vector<std::string> specName;
-    std::vector<std::string> setupValue;
-    std::vector<std::string> minimumValue;
-    std::vector<std::string> maximumValue;
+    std::vector<std::string> specNames;
+    std::vector<std::string> setupValues;
+    std::vector<std::string> minimumValues;
+    std::vector<std::string> maximumValues;
 
     void setSpecSetNumber(const std::string infoNumber, const std::string infoDescription);
     void addData(const std::string infoSpecName, const std::string infoSetupValue,
