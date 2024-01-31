@@ -16,14 +16,14 @@ void SpecSet::addData(const std::string infoSpecName, const std::string infoSetu
 
 void SpecSet::printSetNumber() const {
     auto levelLogger = LoggerManager::getLevelLogger();
-    levelLogger->info("SpecSet Name: {}", specSetNumber);
+    levelLogger->info("SpecSet Number: {}", specSetNumber);
     levelLogger->info("SpecSet Description: {}", specSetDescription);
 }
 
 void SpecSet::printSetData() const {
     auto levelLogger = LoggerManager::getLevelLogger();
 
-    levelLogger->info("SpecSet {} Data:",specName);
+    levelLogger->info("SpecSet {} Data:",specSetDescription);
 
     if(!specName.empty()){
         for(size_t num = 0; num < specName.size(); num++){
