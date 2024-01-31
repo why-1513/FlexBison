@@ -6,5 +6,5 @@ void LevelSetsUsedExtended::setLevelSetNo(const std::string infoLevelSetNo){
 
 void LevelSetsUsedExtended::printData() const {
     auto levelLogger = LoggerManager::getLevelLogger();
-    levelLogger->info("LSUX Data: {}",levelSetNo);
+    levelLogger->info("LSUX Data: {}", levelSetNo);
 }
