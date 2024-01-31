@@ -6,20 +6,31 @@
 #include <memory>
 #include "LoggerManager.h"
 
-#include "SPECSET.h"
+#include "SpecSet.h"
 
-class EQNSET {
+class EqnSet {
 public:
     std::string equationSetNumber;
     std::string equationSetDescription;
 
     std::vector<std::string> specNames;
-    std::vector<std::string> specUnit;
-    std::vector<std::string> dpsPinName;
-    std::vector<std::string> dpsPinValue;
+    std::vector<std::string> specUnits;
 
+    std::vector<std::string> dpsPinNames;
+    std::vector<std::string> dpsPinValues;
 
-    std::vector<std::shared_ptr<SPECSET>> specSet;
+    std::vector<std::shared_ptr<SpecSet>> specSets;
+
+    void setEqnSetNumber(const std::string infoNumber, const std::string infoDescription);
+
+    void addSpecsData(const std::string infoSpceName, const std::string infoSpecUnit);
+    void addDpsPinsData(const std::string infoDpsPinName, const std::string infoDpsPinValue);
+
+    void addSpecSet(const std::shared_ptr<SpecSet> specSet);
+
+    void printSetNumber() const;
+    void printSetData() const;
+    void printSpecSets() const;
   
 };
 
