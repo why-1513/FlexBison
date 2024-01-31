@@ -10,10 +10,10 @@ public:
     std::string levelSetNumber;
     std::string levelSetDescription;
 
-    std::vector<std::string> pinsInName;
-    std::vector<std::string> pinsInValue;
-    std::vector<std::string> pinsOutName;
-    std::vector<std::string> pinsOutValue;
+    std::vector<std::string> pinsInNames;
+    std::vector<std::string> pinsInValues;
+    std::vector<std::string> pinsOutNames;
+    std::vector<std::string> pinsOutValues;
 
     void setSpecSetNumber(const std::string infoNumber, const std::string infoDescription);
     void addPinsInData(const std::string infoPinsInName, const std::string infoPinsInValue);

@@ -6,13 +6,13 @@ void LevelSet::setSpecSetNumber(const std::string infoNumber, const std::string 
 }
 
 void LevelSet::addPinsInData(const std::string infoPinsInName, const std::string infoPinsInValue){
-    pinsInName.push_back(infoPinsInName);
-    pinsInValue.push_back(infoPinsInValue);
+    pinsInNames.push_back(infoPinsInName);
+    pinsInValues.push_back(infoPinsInValue);
 }
 
 void LevelSet::addPinsOutData(const std::string infoPinsOutName, const std::string infoPinsOutValue){
-    pinsOutName.push_back(infoPinsOutName);
-    pinsOutValue.push_back(infoPinsOutValue);
+    pinsOutNames.push_back(infoPinsOutName);
+    pinsOutValues.push_back(infoPinsOutValue);
 }
 
 void LevelSet::printSetNumber() const {
@@ -24,17 +24,17 @@ void LevelSet::printSetNumber() const {
 void LevelSet::printSetData() const {
     auto levelLogger = LoggerManager::getLevelLogger();
 
-    if(!pinsInName.empty()){
+    if(!pinsInNames.empty()){
         levelLogger->info("LevelSet Pins In Data:");
-        for(size_t num = 0; num < pinsInName.size(); num++){
-            levelLogger->info("{} = {}", pinsInName[num], pinsInValue[num]);
+        for(size_t num = 0; num < pinsInNames.size(); num++){
+            levelLogger->info("{} = {}", pinsInNames[num], pinsInValues[num]);
         }
     }
 
-    if(pinsOutName.empty()){
+    if(pinsOutNames.empty()){
         levelLogger->info("LevelSet Pins Out Data:");
-        for(size_t num = 0; num < pinsOutName.size(); num++){
-            levelLogger->info("{} = {}", pinsOutName[num], pinsOutValue[num]);
+        for(size_t num = 0; num < pinsOutNames.size(); num++){
+            levelLogger->info("{} = {}", pinsOutNames[num], pinsOutValues[num]);
         }
     }
 
