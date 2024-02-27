@@ -5,7 +5,8 @@ LevelFile::LevelFile() : pslv(std::make_shared<PowerSupplyLevel>()),
                          rclv(std::make_shared<ReceiveLevel>()),
                          term(std::make_shared<TERMinationMode>()),
                          clmp(std::make_shared<ClampLevel>()),
-                         lsux(std::make_shared<LevelSetsUsedExtended>()) {}
+                         lsux(std::make_shared<LevelSetsUsedExtended>()),
+                         eqsps() {}
 
 void LevelFile::setFileType(const std::string type) {
     auto levelLogger = LoggerManager::getLevelLogger();

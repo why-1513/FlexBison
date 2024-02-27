@@ -30,7 +30,7 @@ public:
     std::shared_ptr<ClampLevel> clmp;
     std::shared_ptr<LevelSetsUsedExtended> lsux;
     
-    std::vector<std::shared_ptr<EquationSpecificationTransfer>> eqsp;
+    std::vector<std::shared_ptr<EquationSpecificationTransfer>> eqsps;
 };
 
 extern std::shared_ptr<LevelFile> levelfile;
