@@ -11,6 +11,10 @@ void yyerror(const char* s)
 }
 std::shared_ptr<LevelFile> levelfile = std::make_shared<LevelFile>();
 std::vector<std::string> pinlist;
+auto eqsp = std::make_shared<EquationSpecificationTransfer>();
+auto eqnset = std::make_shared<EqnSet>();
+auto levelset = std::make_shared<LevelSet>();
+
 %}
 
 %union
@@ -30,6 +34,7 @@ std::vector<std::string> pinlist;
 %type <string> dps_No dps_set_id voltage source_current sink_current impedance setup_time level_set_no level_set_id
 %type <string> logic_0_level logic_1_level term_mode param_1 param_2 param_3 l_range h_range
 %type <string> clamp_mode low_clamp_level high_clamp_level lsux_parameter
+%type <string> spec_type eqspart equation_set_number equation_set_description spec_name spec_unit dpspin_name dpspin_value
 %type <string> pin_name
 
 %start level_file
@@ -51,6 +56,18 @@ level_command: hp93000 TCOMMA TIDENTIFIER TCOMMA TDOUBLE{
 	| CLMP clmp_parameters
 	| LSUX lsux_parameter{
 		levelfile->lsux->setLevelSetNo(*$2);
+	}
+	| EQSP spec_type TCOMMA eqspart TCOMMA THASH TINTEGER eqsp_commands TAT{
+		eqsp->setNumber(*$2,*$4);
+
+		eqsp->addEqnSet(eqnset);
+		eqnset = std::make_shared<EqnSet>();
+
+		eqsp->addLevelSet(levelset);
+
+		levelfile->eqsps.push_back(eqsp);
+		eqsp.reset();
+		eqsp = std::make_shared<EquationSpecificationTransfer>();
 	}
 	;
 
@@ -244,5 +261,46 @@ pin_names: pin_names TCOMMA pin_name {
 		pinlist.push_back(*$1);
 	};
 pin_name: TIDENTIFIER;
+
+eqsp_commands: eqsp_commands eqsp_command
+	| eqsp_command
+	;
+
+eqsp_command: EQNSET equation_set_number equation_set_description{
+	eqnset->setNumber(*$2,*$3);
+}
+	| SPECS specs_parameters
+	| DPSPINS TIDENTIFIER dpspins_equations
+	;
+
+spec_type: TIDENTIFIER;
+eqspart: TIDENTIFIER;
+equation_set_number: TINTEGER;
+equation_set_description: TLITERAL;
+
+specs_parameters: specs_parameters specs_parameters
+	| specs_parameter
+	;
+specs_parameter: spec_name TLBRACKET spec_unit TRBRACKET{
+	eqnset->addSpecsData(*$1,*$3);
+};
+spec_name: TIDENTIFIER;
+spec_unit: TIDENTIFIER;
+
+dpspins_equations: dpspins_equations dpspins_equation
+	| dpspins_equation
+	;
+dpspins_equation: dpspin_name TEQUAL dpspin_value{
+	eqnset->addDpsPinsData(*$1,*$3);
+}
+	| THASH dpspin_name TEQUAL dpspin_value
+	;
+dpspin_name: TIDENTIFIER;
+dpspin_value: TIDENTIFIER
+	| TINTEGER
+	| TDOUBLE
+	| TNEGINTEGER
+	| TNEGDOUBLE
+	;
 
 %%

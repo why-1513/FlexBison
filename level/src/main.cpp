@@ -21,8 +21,12 @@ int main(int argc, char **argv) {
   yyparse();
   yyparseCleanup();
   
-  levelfile->lsux->printData();
-  levelfile->clmp->printPinList();
+  for (const auto& eqsp : levelfile->eqsps) {
+    // 访问 eqsp 指向的 EquationSpecificationTransfer 对象，并输出相关信息
+    eqsp->printNumber();
+    eqsp->printEqnSets();
+
+}
   
   return 0;
 }
