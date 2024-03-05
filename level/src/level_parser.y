@@ -36,7 +36,7 @@ auto specset = std::make_shared<SpecSet>();
 %type <string> logic_0_level logic_1_level term_mode param_1 param_2 param_3 l_range h_range
 %type <string> clamp_mode low_clamp_level high_clamp_level lsux_parameter
 %type <string> spec_type eqspart equation_set_number equation_set_description spec_name spec_unit dpspin_name dpspin_value
-%type <string> level_set_number level_set_description pin_value
+%type <string> level_set_number level_set_description pin_value specset_number specset_description setup_value minimum_value maximum_value
 %type <string> pin_name
 
 %start level_file
@@ -278,6 +278,13 @@ eqsp_command: EQNSET equation_set_number equation_set_description{
 	| LEVELSET level_set_number level_set_description levelset_parameters{
 		levelset->setNumber(*$2,*$3);
 	}
+	| SPECSET specset_number specset_description specdatas{
+		specset->setNumber(*$2,*$3);
+
+		eqnset->addSpecSet(specset);
+		specset.reset();
+		specset = std::make_shared<SpecSet>();
+	}
 	;
 
 spec_type: TIDENTIFIER;
@@ -291,8 +298,6 @@ specs_parameters: specs_parameters specs_parameters
 specs_parameter: spec_name TLBRACKET spec_unit TRBRACKET{
 	eqnset->addSpecsData(*$1,*$3);
 };
-spec_name: TIDENTIFIER;
-spec_unit: TIDENTIFIER;
 
 dpspins_equations: dpspins_equations dpspins_equation
 	| dpspins_equation
@@ -334,6 +339,42 @@ level_set_number: TINTEGER;
 level_set_description: TLITERAL;
 pin_value: TIDENTIFIER
 	| TINTEGER
+	| TDOUBLE
+	| TNEGINTEGER
+	| TNEGDOUBLE
+	;
+
+specset_number: TINTEGER;
+specset_description: TLITERAL;
+specdatas: specdatas specdata
+	| specdata
+	;
+specdata: SPECNAME TACTUAL TMINIMUM TMAXIMUM UNITSCOMMENT
+	| spec_name setup_value TLBRACKET spec_unit TRBRACKET{
+		specset->addData(*$1,*$2,"unset","unset",*$4);
+	}
+	| spec_name setup_value minimum_value TLBRACKET spec_unit TRBRACKET{
+		specset->addData(*$1,*$2,*$3,"unset",*$5);
+	}
+	| spec_name setup_value minimum_value maximum_value TLBRACKET spec_unit TRBRACKET{
+		specset->addData(*$1,*$2,*$3,*$4,*$6);
+	}
+	;
+
+spec_name: TIDENTIFIER;
+spec_unit: TIDENTIFIER;
+
+setup_value: TINTEGER
+	| TDOUBLE
+	| TNEGINTEGER
+	| TNEGDOUBLE
+	;
+minimum_value: TINTEGER
+	| TDOUBLE
+	| TNEGINTEGER
+	| TNEGDOUBLE
+	;
+maximum_value: TINTEGER
 	| TDOUBLE
 	| TNEGINTEGER
 	| TNEGDOUBLE
