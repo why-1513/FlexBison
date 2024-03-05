@@ -31,12 +31,14 @@ void EqnSet::printSetData() const{
     levelLogger->info("EqnSet {} Data:",equationSetDescription);
 
     if(!specNames.empty()){
+        levelLogger->info("spec:");
         for(size_t num = 0; num < specNames.size(); num++){
             levelLogger->info("{} [{}]", specNames[num], specUnits[num]);
         }
     }
 
     if(!dpsPinNames.empty()){
+        levelLogger->info("dpspins:");
         for(size_t num = 0; num < dpsPinNames.size(); num++){
             levelLogger->info("{} = {}", dpsPinNames[num], dpsPinValues[num]);
         }
