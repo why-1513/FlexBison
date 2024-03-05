@@ -25,6 +25,7 @@ int main(int argc, char **argv) {
     // 访问 eqsp 指向的 EquationSpecificationTransfer 对象，并输出相关信息
     eqsp->printNumber();
     eqsp->printEqnSets();
+    eqsp->printLevelSets();
 
 }
   
