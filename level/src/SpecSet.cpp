@@ -6,12 +6,14 @@ void SpecSet::setNumber(const std::string infoNumber, const std::string infoDesc
 }
 
 void SpecSet::addData(const std::string infoSpecName, const std::string infoSetupValue,
-                 const std::string infoMinimumValue, const std::string infoMaximumValue){
+                 const std::string infoMinimumValue, const std::string infoMaximumValue
+                 ,const std::string infoUnit){
     
     specNames.push_back(infoSpecName);
     setupValues.push_back(infoSetupValue);
     minimumValues.push_back(infoMinimumValue);
     maximumValues.push_back(infoMaximumValue);
+    units.push_back(infoUnit);
 }
 
 void SpecSet::printSetNumber() const {
@@ -27,7 +29,7 @@ void SpecSet::printSetData() const {
 
     if(!specNames.empty()){
         for(size_t num = 0; num < specNames.size(); num++){
-            levelLogger->info("{} {} {} {}", specNames[num], setupValues[num],minimumValues[num], maximumValues[num]);
+            levelLogger->info("{} {} {} {} {}", specNames[num], setupValues[num],minimumValues[num], maximumValues[num], units[num]);
         }
     }
 }
