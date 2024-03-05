@@ -31,7 +31,7 @@ void LevelSet::printSetData() const {
         }
     }
 
-    if(pinsOutNames.empty()){
+    if(!pinsOutNames.empty()){
         levelLogger->info("LevelSet Pins Out Data:");
         for(size_t num = 0; num < pinsOutNames.size(); num++){
             levelLogger->info("{} = {}", pinsOutNames[num], pinsOutValues[num]);
