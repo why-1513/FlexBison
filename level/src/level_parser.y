@@ -14,6 +14,7 @@ std::vector<std::string> pinlist;
 auto eqsp = std::make_shared<EquationSpecificationTransfer>();
 auto eqnset = std::make_shared<EqnSet>();
 auto levelset = std::make_shared<LevelSet>();
+auto specset = std::make_shared<SpecSet>();
 
 %}
 
@@ -35,6 +36,7 @@ auto levelset = std::make_shared<LevelSet>();
 %type <string> logic_0_level logic_1_level term_mode param_1 param_2 param_3 l_range h_range
 %type <string> clamp_mode low_clamp_level high_clamp_level lsux_parameter
 %type <string> spec_type eqspart equation_set_number equation_set_description spec_name spec_unit dpspin_name dpspin_value
+%type <string> level_set_number level_set_description pin_value
 %type <string> pin_name
 
 %start level_file
@@ -61,9 +63,12 @@ level_command: hp93000 TCOMMA TIDENTIFIER TCOMMA TDOUBLE{
 		eqsp->setNumber(*$2,*$4);
 
 		eqsp->addEqnSet(eqnset);
+		eqnset.reset();
 		eqnset = std::make_shared<EqnSet>();
 
 		eqsp->addLevelSet(levelset);
+		levelset.reset();
+		levelset = std::make_shared<LevelSet>();
 
 		levelfile->eqsps.push_back(eqsp);
 		eqsp.reset();
@@ -260,7 +265,6 @@ pin_names: pin_names TCOMMA pin_name {
 		pinlist = std::vector<std::string>();
 		pinlist.push_back(*$1);
 	};
-pin_name: TIDENTIFIER;
 
 eqsp_commands: eqsp_commands eqsp_command
 	| eqsp_command
@@ -271,6 +275,9 @@ eqsp_command: EQNSET equation_set_number equation_set_description{
 }
 	| SPECS specs_parameters
 	| DPSPINS TIDENTIFIER dpspins_equations
+	| LEVELSET level_set_number level_set_description levelset_parameters{
+		levelset->setNumber(*$2,*$3);
+	}
 	;
 
 spec_type: TIDENTIFIER;
@@ -302,5 +309,36 @@ dpspin_value: TIDENTIFIER
 	| TNEGINTEGER
 	| TNEGDOUBLE
 	;
+
+levelset_parameters: levelset_parameters levelset_parameter
+	| levelset_parameter
+	;
+levelset_parameter: PINSIN pinsin_equations
+	| PINSOUT pinsout_equations
+	;
+pinsin_equations: pinsin_equations pinsin_equation
+	| pinsin_equation
+	;
+pinsin_equation: pin_name TEQUAL pin_value{
+	levelset->addPinsInData(*$1,*$3);
+};
+
+pinsout_equations: pinsout_equations pinsout_equation
+	| pinsout_equation
+	;
+pinsout_equation: pin_name TEQUAL pin_value{
+	levelset->addPinsOutData(*$1,*$3);
+};
+
+level_set_number: TINTEGER;
+level_set_description: TLITERAL;
+pin_value: TIDENTIFIER
+	| TINTEGER
+	| TDOUBLE
+	| TNEGINTEGER
+	| TNEGDOUBLE
+	;
+
+pin_name: TIDENTIFIER;
 
 %%
