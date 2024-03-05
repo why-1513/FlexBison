@@ -1,6 +1,6 @@
 #include "SpecSet.h"
 
-void SpecSet::setSpecSetNumber(const std::string infoNumber, const std::string infoDescription){
+void SpecSet::setNumber(const std::string infoNumber, const std::string infoDescription){
     specSetNumber = infoNumber;
     specSetDescription = infoDescription;
 }

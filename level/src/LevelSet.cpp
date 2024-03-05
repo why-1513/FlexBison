@@ -1,6 +1,6 @@
 #include "LevelSet.h"
 
-void LevelSet::setSpecSetNumber(const std::string infoNumber, const std::string infoDescription){
+void LevelSet::setNumber(const std::string infoNumber, const std::string infoDescription){
     levelSetNumber = infoNumber;
     levelSetDescription = infoDescription;
 }

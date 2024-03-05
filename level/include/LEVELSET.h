@@ -15,7 +15,7 @@ public:
     std::vector<std::string> pinsOutNames;
     std::vector<std::string> pinsOutValues;
 
-    void setSpecSetNumber(const std::string infoNumber, const std::string infoDescription);
+    void setNumber(const std::string infoNumber, const std::string infoDescription);
     void addPinsInData(const std::string infoPinsInName, const std::string infoPinsInValue);
     void addPinsOutData(const std::string infoPinsOutName, const std::string infoPinsOutValue);
 

@@ -15,7 +15,7 @@ public:
     std::vector<std::string> minimumValues;
     std::vector<std::string> maximumValues;
 
-    void setSpecSetNumber(const std::string infoNumber, const std::string infoDescription);
+    void setNumber(const std::string infoNumber, const std::string infoDescription);
     void addData(const std::string infoSpecName, const std::string infoSetupValue,
                  const std::string infoMinimumValue, const std::string infoMaximumValue);
 
