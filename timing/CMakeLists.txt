@@ -15,7 +15,8 @@ add_executable(timing
     ${CMAKE_CURRENT_BINARY_DIR}/src/main.cpp
     ${CMAKE_CURRENT_BINARY_DIR}/timing_lexer.cpp
     ${CMAKE_CURRENT_BINARY_DIR}/timing_parser.cpp
-    ${CMAKE_CURRENT_BINARY_DIR}/src/TimingAST.cpp)
+    ${CMAKE_CURRENT_BINARY_DIR}/src/TimingAST.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/src/LoggerManager.cpp)
 
 target_link_libraries(timing PUBLIC
     -lm)
