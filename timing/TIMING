@@ -1,0 +1,63 @@
+hp93000,timing,0.1
+PCLK 1,1,20,(@)
+CLKR 1,20,10
+BWDS 1,,,"",(G1,G2A,G2B,C,B,A)
+ETDS 1,1,,"",(G1,G2A,G2B,C,B,A,Y0,Y1,Y2,Y3,Y4,Y5,Y6,Y7)
+DCDT 1,""
+TSUX 1,1
+EQSP TIM,WVT,#9000000109
+WAVETBL  "FUN"
+
+PINS IN
+0 "d1:0"   0
+1 "d1:1"   1
+2 "d1:Z"   X
+STATEMAP
+0 0 X1
+1 1 X1
+2 X X1
+PINS OUT
+0 "r1:L" 	L
+1 "r1:H"	H
+2 "r1:X" 	X
+STATEMAP
+0 L X1
+1 H X1
+2 X X1
+@
+EQSP TIM,EQN,#9000000123
+EQNSET 1 "TIMING"
+SPECS
+F [MHZ]
+READ [ns]
+
+EQUATIONS
+T=1000/F
+
+TIMINGSET 1 "FUN"
+period=T
+
+PINS IN
+d1=0
+
+PINS OUT
+r1=READ
+@
+EQSP TIM,SPS,#9000000301
+
+
+EQNSET 1 "TIMING"
+
+
+WAVETBL "FUN"
+
+CHECK all
+
+SPECSET 1 "1MHZ"
+
+
+# SPECNAME       *****ACTUAL***** *****MINIMUM**** *****MAXIMUM**** UNITS COMMENT
+F                1                                                  [MHZ] 
+READ             800                                                [ ns] 
+@
+NOOP "7.4.1",,,
