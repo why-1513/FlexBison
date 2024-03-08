@@ -22,7 +22,10 @@ std::shared_ptr<LevelFile> timingfile = std::make_shared<TimingFile>();
 	
 }
 
-%token <string> PSLV DRLV RCLV TERM CLMP LSUX EQSP EQNSET SPECS DPSPINS NOOP hp93000
+%token <string> PCLK CLKR BWDS ETDS DCDT TSUX EQSP EQNSET SPECS NOOP hp93000
+%token <string> WAVETBL PINSIN PINSOUT STATEMAP TIMINGSET EQUATIONS CHECKALL SPECSET
+%token <string> SPECNAME TACTUAL TMINIMUM TMAXIMUM UNITSCOMMENT
+%token <string> TDOUBLE TINTEGER TNEGDOUBLE TNEGINTEGER TIDENTIFIER TLITERAL
 %token <token> TCOMMA TLPAREN TRPAREN TMINUS TLBRACKET TRBRACKET TMUL TEQUAL THASH TAT
 
 %type <string> dps_No dps_set_id
@@ -39,4 +42,5 @@ timing_commands: timing_commands timing_command
 timing_command: hp93000 TCOMMA TIDENTIFIER TCOMMA TDOUBLE{
 	timingfile->setFileType(*$3);
 }
+	| PCLK
 	;
