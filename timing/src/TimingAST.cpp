@@ -1,6 +1,11 @@
 #include "TimingAST.h"
 
-TimingFile::TimingFile() {}
+TimingFile::TimingFile() : pclk(std::make_shared<PinClock>()),
+                           clkr(std::make_shared<ClockResolution>()),
+                           bwds(std::make_shared<BreakWaveformDefinitionString>()),
+                           etds(std::make_shared<EdgeTimingDefinitionString>()),
+                           dcdt(std::make_shared<DeviceCycleDefault>()),
+                           tsux(std::make_shared<TimingSetsUsedEXtended>()) {}
 
 void TimingFile::setFileType(const std::string type) {
     auto timingLogger = LoggerManager::getTimingLogger();

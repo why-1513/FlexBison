@@ -4,7 +4,12 @@
 #include <vector>
 #include <memory>
 #include <string>
-
+#include "PinClock.h"
+#include "ClockResolution.h"
+#include "BreakWaveformDefinitionString.h"
+#include "EdgeTimingDefinitionString.h"
+#include "DeviceCycleDefault.h"
+#include "TimingSetsUsedEXtended.h"
 #include "LoggerManager.h"
 
 class TimingFile {
@@ -15,6 +20,14 @@ public:
 
     void setFileType(const std::string type);
 
+
+    std::shared_ptr<PinClock> pclk;
+    std::shared_ptr<ClockResolution> clkr;
+    std::shared_ptr<BreakWaveformDefinitionString> bwds;
+    std::shared_ptr<EdgeTimingDefinitionString> etds;
+    std::shared_ptr<DeviceCycleDefault> dcdt;
+    std::shared_ptr<TimingSetsUsedEXtended> tsux;
+    
 };
 
 extern std::shared_ptr<TimingFile> timingfile;
