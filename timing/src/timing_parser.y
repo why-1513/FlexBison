@@ -10,6 +10,7 @@ void yyerror(const char* s)
 	timingLogger->error("Error: {}", s);
 }
 std::shared_ptr<LevelFile> timingfile = std::make_shared<TimingFile>();
+std::vector<std::string> pinlist;
 
 %}
 
@@ -28,7 +29,7 @@ std::shared_ptr<LevelFile> timingfile = std::make_shared<TimingFile>();
 %token <string> TDOUBLE TINTEGER TNEGDOUBLE TNEGINTEGER TIDENTIFIER TLITERAL
 %token <token> TCOMMA TLPAREN TRPAREN TMINUS TLBRACKET TRBRACKET TMUL TEQUAL THASH TAT
 
-%type <string> dps_No dps_set_id
+%type <string> waveform_set timing_set period
 
 %start timing_file
 %defines
@@ -42,5 +43,17 @@ timing_commands: timing_commands timing_command
 timing_command: hp93000 TCOMMA TIDENTIFIER TCOMMA TDOUBLE{
 	timingfile->setFileType(*$3);
 }
-	| PCLK
+	| PCLK waveform_set TCOMMA timing_set TCOMMA period TCOMMA TLPAREN pin_names TRPAREN
 	;
+
+pin_names: pin_names TCOMMA pin_name {
+	pinlist.push_back(*$3);
+}
+	| pin_name {
+		pinlist = std::vector<std::string>();
+		pinlist.push_back(*$1);
+	};
+
+pin_name: TIDENTIFIER;
+
+%%
