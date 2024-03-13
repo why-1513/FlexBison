@@ -21,7 +21,7 @@ public:
 
     std::vector<std::vector<std::string>> pinlist;
 
-    void addFixData(const std::string infoWaveFormSet, const std::string infoTimingSet,
+    void addFixData(const std::string infoWaveformSet, const std::string infoTimingSet,
                  const std::string infoPeriod, const std::vector<std::string> infoPinList);
 
     void printPinList() const;
