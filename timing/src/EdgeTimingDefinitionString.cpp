@@ -41,16 +41,16 @@ void EdgeTimingDefinitionString::printData() const {
     }
 
     if(!timingSet.empty()){
-        for (const auto index : timingSet) {
-            vectorTimingSet += index + "";
+        for (const auto set : timingSet) {
+            vectorTimingSet += set + "";
         }
         timingLogger->info("timingSet: {}", vectorTimingSet);
         vectorTimingSet.clear();
     }
 
     if(!definitionString.empty()){
-        for (const auto period : definitionString) {
-            vectorDefinitionString += period + "";
+        for (const auto strings : definitionString) {
+            vectorDefinitionString += strings + "";
         }
         timingLogger->info("definitionString: {}", vectorDefinitionString);
         vectorDefinitionString.clear();

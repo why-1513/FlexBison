@@ -49,8 +49,8 @@ void BreakWaveformDefinitionString::printData() const {
     }
 
     if(!definitionString.empty()){
-        for (const auto period : definitionString) {
-            vectorDefinitionString += period + "";
+        for (const auto strings : definitionString) {
+            vectorDefinitionString += strings + "";
         }
         timingLogger->info("definitionString: {}", vectorDefinitionString);
         vectorDefinitionString.clear();
