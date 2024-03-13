@@ -16,7 +16,14 @@ add_executable(timing
     ${CMAKE_CURRENT_BINARY_DIR}/timing_lexer.cpp
     ${CMAKE_CURRENT_BINARY_DIR}/timing_parser.cpp
     ${CMAKE_CURRENT_BINARY_DIR}/src/TimingAST.cpp
-    ${CMAKE_CURRENT_BINARY_DIR}/src/LoggerManager.cpp)
+    ${CMAKE_CURRENT_BINARY_DIR}/src/LoggerManager.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/src/PinClock.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/src/ClockResolution.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/src/BreakWaveformDefinitionString.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/src/EdgeTimingDefinitionString.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/src/DeviceCycleDefault.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/src/TimingSetsUsedEXtended.cpp
+    )
 
 target_link_libraries(timing PUBLIC
     -lm)
