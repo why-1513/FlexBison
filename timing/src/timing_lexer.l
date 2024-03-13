@@ -40,8 +40,8 @@ void yyparseCleanup()
 "STATEMAP"				puts("STATEMAP"); return TOKEN(STATEMAP);
 "EQSP"					puts("EQSP"); return TOKEN(EQSP);
 "EQNSET"				puts("EQNSET"); return TOKEN(EQNSET);
-"SPECS"					puts("SPECS"): return TOKEN(SPECS);
-"TIMINGSET"				puts("TIMINGSET"): return TOKEN(TIMINGSET);
+"SPECS"					puts("SPECS"); return TOKEN(SPECS);
+"TIMINGSET"				puts("TIMINGSET"); return TOKEN(TIMINGSET);
 "PINS IN"				puts("PINS IN"); return TOKEN(PINSIN);
 "PINS OUT"				puts("PINS OUT"); return TOKEN(PINSOUT);
 "EQUATIONS"				puts("EQUATIONS"); return TOKEN(EQUATIONS);
