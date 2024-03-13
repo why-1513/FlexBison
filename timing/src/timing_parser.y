@@ -6,10 +6,10 @@
 extern int yylex();
 void yyerror(const char* s)
 {
-	auto timingLogger = LoggerManager::getLevelLogger();
+	auto timingLogger = LoggerManager::getTimingLogger();
 	timingLogger->error("Error: {}", s);
 }
-std::shared_ptr<LevelFile> timingfile = std::make_shared<TimingFile>();
+std::shared_ptr<TimingFile> timingfile = std::make_shared<TimingFile>();
 std::vector<std::string> pinlist;
 
 %}
@@ -30,6 +30,7 @@ std::vector<std::string> pinlist;
 %token <token> TCOMMA TLPAREN TRPAREN TMINUS TLBRACKET TRBRACKET TMUL TEQUAL THASH TAT
 
 %type <string> waveform_set timing_set period
+%type <string> pin_name
 
 %start timing_file
 %defines
@@ -44,6 +45,14 @@ timing_command: hp93000 TCOMMA TIDENTIFIER TCOMMA TDOUBLE{
 	timingfile->setFileType(*$3);
 }
 	| PCLK waveform_set TCOMMA timing_set TCOMMA period TCOMMA TLPAREN pin_names TRPAREN
+	;
+
+waveform_set: TINTEGER;
+timing_set: TIDENTIFIER
+	| TINTEGER
+	;
+period: TINTEGER
+	| TDOUBLE
 	;
 
 pin_names: pin_names TCOMMA pin_name {
