@@ -11,8 +11,6 @@ public:
     std::vector<std::string> defaultName;
 
     void addData(const std::string infoWaveformSet, const std::string infoDefaultName);
-    
-    void printPinList() const;
 
     void printData() const;
 };
