@@ -16,8 +16,6 @@ public:
     std::vector<std::string> periodRes;
 
     void addData(const std::string infoWaveformSet, const std::string infoPeriodRes);
-    
-    void printPinList() const;
 
     void printData() const;
 };
