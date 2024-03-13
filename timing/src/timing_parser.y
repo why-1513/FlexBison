@@ -44,7 +44,11 @@ timing_commands: timing_commands timing_command
 timing_command: hp93000 TCOMMA TIDENTIFIER TCOMMA TDOUBLE{
 	timingfile->setFileType(*$3);
 }
-	| PCLK waveform_set TCOMMA timing_set TCOMMA period TCOMMA TLPAREN pin_names TRPAREN
+	| PCLK pclk_parameters waveform_set TCOMMA timing_set TCOMMA period TCOMMA TLPAREN pin_names TRPAREN
+	;
+
+pclk_parameters: waveform_set TCOMMA timing_set TCOMMA period TCOMMA TLPAREN pin_names TRPAREN
+	| waveform_set TCOMMA timing_set TCOMMA period TCOMMA TLPAREN TAT TRPAREN
 	;
 
 waveform_set: TINTEGER;
@@ -63,8 +67,6 @@ pin_names: pin_names TCOMMA pin_name {
 		pinlist.push_back(*$1);
 	};
 
-pin_name: TIDENTIFIER
-	| TAT
-	;
+pin_name: TIDENTIFIER;
 
 %%
