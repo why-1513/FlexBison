@@ -63,6 +63,8 @@ pin_names: pin_names TCOMMA pin_name {
 		pinlist.push_back(*$1);
 	};
 
-pin_name: TIDENTIFIER;
+pin_name: TIDENTIFIER
+	| TAT
+	;
 
 %%
