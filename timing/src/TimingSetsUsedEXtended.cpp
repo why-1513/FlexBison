@@ -7,7 +7,7 @@ void TimingSetsUsedEXtended::addData(const std::string infoWaveformSet, const st
 
 void TimingSetsUsedEXtended::printData() const {
     auto timingLogger = LoggerManager::getTimingLogger();
-    timingLogger->info("DCDT Data:");
+    timingLogger->info("TSUX Data:");
 
     std::string vectorWaveformSet;
     std::string vectorTimingSet;
