@@ -20,6 +20,16 @@ int main(int argc, char **argv) {
   yyparseInit(timingName);
   yyparse();
   yyparseCleanup();
-  
+
+  timingfile->pclk->printData();
+  timingfile->pclk->printPinList();
+  timingfile->clkr->printData();
+  timingfile->bwds->printPinList();
+  timingfile->bwds->printData();
+  timingfile->etds->printPinList();
+  timingfile->etds->printData();
+  timingfile->dcdt->printData();
+  timingfile->tsux->printData();
+
   return 0;
 }
