@@ -12,6 +12,8 @@
 #include "TimingSetsUsedEXtended.h"
 #include "LoggerManager.h"
 
+#include "EquationSpecificationTransfer.h"
+
 class TimingFile {
 public:
     TimingFile();
@@ -27,6 +29,8 @@ public:
     std::shared_ptr<EdgeTimingDefinitionString> etds;
     std::shared_ptr<DeviceCycleDefault> dcdt;
     std::shared_ptr<TimingSetsUsedEXtended> tsux;
+
+    std::vector<std::shared_ptr<EquationSpecificationTransfer>> eqsps;
     
 };
 

@@ -5,7 +5,8 @@ TimingFile::TimingFile() : pclk(std::make_shared<PinClock>()),
                            bwds(std::make_shared<BreakWaveformDefinitionString>()),
                            etds(std::make_shared<EdgeTimingDefinitionString>()),
                            dcdt(std::make_shared<DeviceCycleDefault>()),
-                           tsux(std::make_shared<TimingSetsUsedEXtended>()) {}
+                           tsux(std::make_shared<TimingSetsUsedEXtended>()),
+                           eqsps() {}
 
 void TimingFile::setFileType(const std::string type) {
     auto timingLogger = LoggerManager::getTimingLogger();
