@@ -23,6 +23,13 @@ add_executable(timing
     ${CMAKE_CURRENT_BINARY_DIR}/src/EdgeTimingDefinitionString.cpp
     ${CMAKE_CURRENT_BINARY_DIR}/src/DeviceCycleDefault.cpp
     ${CMAKE_CURRENT_BINARY_DIR}/src/TimingSetsUsedEXtended.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/src/EquationSpecificationTransfer.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/src/EqnSet.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/src/WaveTBL.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/src/TimingSet.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/src/LogicalWaveform.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/src/SpecSet.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/src/PinSet.cpp
     )
 
 target_link_libraries(timing PUBLIC
