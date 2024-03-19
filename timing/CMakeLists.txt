@@ -30,6 +30,7 @@ add_executable(timing
     ${CMAKE_CURRENT_BINARY_DIR}/src/LogicalWaveform.cpp
     ${CMAKE_CURRENT_BINARY_DIR}/src/SpecSet.cpp
     ${CMAKE_CURRENT_BINARY_DIR}/src/PinSet.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/src/LevelSet.cpp
     )
 
 target_link_libraries(timing PUBLIC
