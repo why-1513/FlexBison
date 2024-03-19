@@ -27,7 +27,7 @@ std::vector<std::string> pinlist;
 %token <string> WAVETBL PINSIN PINSOUT STATEMAP TIMINGSET EQUATIONS CHECKALL SPECSET
 %token <string> SPECNAME TACTUAL TMINIMUM TMAXIMUM UNITSCOMMENT
 %token <string> TDOUBLE TINTEGER TNEGDOUBLE TNEGINTEGER TIDENTIFIER TLITERAL
-%token <token> TCOMMA TLPAREN TRPAREN TMINUS TLBRACKET TRBRACKET TMUL TEQUAL THASH TAT
+%token <token> TCOMMA TLPAREN TRPAREN TMINUS TPLUS TDIV TCLT TCGT TQUESTION TCOLON TLBRACKET TRBRACKET TMUL TEQUAL THASH TAT
 
 %type <string> waveform_set timing_set period period_res ref_period wvf_set break_waveform_index definition_string
 %type <string> default_name
@@ -114,5 +114,38 @@ pin_names: pin_names TCOMMA pin_name {
 	};
 
 pin_name: TIDENTIFIER;
+
+expression: condition TQUESTION  expression TCOLON expression
+	| term pmterms
+	| term
+	;
+condition: TLPAREN condition TRPAREN 
+	| expression TCGT expression
+	| expression TCLT expression
+	| expression
+	;
+term: factor mdfactors
+	| factor
+	;
+pmterms: pmterm pmterm
+	| pmterm
+	;
+mdfactors: TMUL factor
+	| TDIV factor
+	;
+factor: TLPAREN expression TRPAREN
+	| TMINUS TLPAREN expression TRPAREN
+	| TINTEGER
+	| TDOUBLE
+	| TPLUS TINTEGER
+	| TPLUS TDOUBLE
+	| TMINUS TINTEGER
+	| TMINUS TDOUBLE
+	| TPLUS TIDENTIFIER
+	| TMINUS TIDENTIFIER
+	;
+pmterm: TPLUS term
+	| TMINUS term
+	;
 
 %%
