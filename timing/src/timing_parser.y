@@ -11,6 +11,13 @@ void yyerror(const char* s)
 }
 std::shared_ptr<TimingFile> timingfile = std::make_shared<TimingFile>();
 std::vector<std::string> pinlist;
+auto eqsp = std::make_shared<EquationSpecificationTransfer>();
+auto eqnset = std::make_shared<EqnSet>();
+auto timingset = std::make_shared<TimingSet>();
+auto specset = std::make_shared<SpecSet>();
+auto wavetbl = std::make_shared<WaveTBL>();
+auto pinset = std::make_shared<PinSet>();
+auto logicalwaveform = std::make_shared<LogicalWaveform>();
 
 %}
 
@@ -29,8 +36,8 @@ std::vector<std::string> pinlist;
 %token <string> TDOUBLE TINTEGER TNEGDOUBLE TNEGINTEGER TIDENTIFIER TLITERAL
 %token <token> TCOMMA TLPAREN TRPAREN TMINUS TPLUS TDIV TCLT TCGT TQUESTION TCOLON TLBRACKET TRBRACKET TMUL TEQUAL THASH TAT
 
-%type <string> waveform_set timing_set period period_res ref_period wvf_set break_waveform_index definition_string
-%type <string> default_name
+%type <string> waveform_set timing_set period period_res ref_period wvf_set break_waveform_index definition_string default_name
+%type <string> spec_type eqspart equation_set_number equation_set_description spec_name spec_unit
 %type <string> pin_name
 
 %start timing_file
@@ -56,6 +63,26 @@ timing_command: hp93000 TCOMMA TIDENTIFIER TCOMMA TDOUBLE{
 	}
 	| TSUX waveform_set TCOMMA timing_set{
 		timingfile->tsux->addData(*$2,*$4);
+	}
+	| EQSP spec_type TCOMMA eqspart TCOMMA THASH TINTEGER eqsp_commands TAT{
+		eqsp->setNumber(*$2,*$4);
+
+		eqsp->addEqnSet(eqnset);
+		eqnset.reset();
+		eqnset = std::make_shared<EqnSet>();
+
+		eqsp->addTimingSet(timingset);
+		timingset.reset();
+		timingset = std::make_shared<TimingSet>();
+
+		eqsp->addWaveTbl(wavetbl);
+		wavetbl.reset();
+		wavetbl = std::make_shared<WaveTBL>();
+
+		timingfile->eqsps.push_back(eqsp);
+		eqsp.reset();
+		eqsp = std::make_shared<EquationSpecificationTransfer>();
+
 	}
 	;
 
@@ -112,6 +139,32 @@ pin_names: pin_names TCOMMA pin_name {
 		pinlist = std::vector<std::string>();
 		pinlist.push_back(*$1);
 	};
+
+eqsp_commands: eqsp_commands eqsp_command
+	| eqsp_command
+	;
+
+eqsp_command: EQNSET equation_set_number equation_set_description{
+	eqnset->setNumber(*$2,*$3);
+}
+	| SPECS specs_parameters
+	| expression
+	;
+
+spec_type: TIDENTIFIER;
+eqspart: TIDENTIFIER;
+equation_set_number: TINTEGER;
+equation_set_description: TLITERAL;
+
+specs_parameters: specs_parameters specs_parameters
+	| specs_parameter
+	;
+specs_parameter: spec_name TLBRACKET spec_unit TRBRACKET{
+	eqnset->addSpecsData(*$1,*$3);
+};
+
+spec_name: TIDENTIFIER;
+spec_unit: TIDENTIFIER;
 
 pin_name: TIDENTIFIER;
 

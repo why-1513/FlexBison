@@ -30,6 +30,14 @@ int main(int argc, char **argv) {
   timingfile->etds->printData();
   timingfile->dcdt->printData();
   timingfile->tsux->printData();
+  for (const auto& eqsp : timingfile->eqsps) {
+    // 访问 eqsp 指向的 EquationSpecificationTransfer 对象，并输出相关信息
+    eqsp->printNumber();
+    eqsp->printEqnSets();
+    eqsp->printTimingSets();
+    eqsp->printWaveTbls();
+    eqsp->printTimingSets();
 
+}
   return 0;
 }
