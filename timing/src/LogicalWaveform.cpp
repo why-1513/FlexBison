@@ -34,7 +34,7 @@ void LogicalWaveform::printWaveformData() const{
                 }
             }
 
-            timingLogger->info("{} {} {}", physicalWaveformNumber[num], EdgeAndAction, waveformName);
+            timingLogger->info("{} {} {}", physicalWaveformNumber[num], EdgeAndAction, waveformName[num]);
             EdgeAndAction.clear();
 
         }
