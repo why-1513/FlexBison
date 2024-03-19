@@ -56,7 +56,7 @@ void EquationSpecificationTransfer::printWaveTbls() const{
     }
 }
 
-void EquationSpecificationTransfer::printLevelSets() const{
+void EquationSpecificationTransfer::printTimingSets() const{
     if(!timingSets.empty()){
         for(const auto set : timingSets){
             set->printSetNumber();
