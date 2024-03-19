@@ -61,12 +61,18 @@ void yyparseCleanup()
 [a-zA-Z][a-zA-Z0-9_]*	SAVE_TOKEN; puts(yytext); return TIDENTIFIER;
 \"(.*?)\"				SAVE_TOKEN; puts(yytext); return TLITERAL;
 "-"						puts("TMINUS"); return TOKEN(TMINUS);
+"+"						puts("TPLUS"); return TOKEN(TPLUS);
 ","						puts("TCOMMA"); return TOKEN(TCOMMA);
 "("						puts("TLPAREN"); return TOKEN(TLPAREN);
 ")"						puts("TRPAREN"); return TOKEN(TRPAREN);
 "["						puts("TLBRACKET"); return TOKEN(TLBRACKET);
 "]"						puts("TRBRACKET"); return TOKEN(TRBRACKET);
 "*"						puts("TMUL"); return TOKEN(TMUL);
+"/"						puts("TDIV"); return TOKEN(TDIV);
+"<"                     puts("TCLT"); return TOKEN(TCLT);
+">"                     puts("TCGT"); return TOKEN(TCGT);
+"?"						puts("TQUESTION"); return TOKEN(TQUESTION);
+":"						puts("TCOLON"); return TOKEN(TCOLON);
 "="						puts("TEQUAL"); return TOKEN(TEQUAL);
 "#"						puts("THASH"); return TOKEN(THASH);
 "@"						puts("TAT"); return TOKEN(TAT);
