@@ -66,7 +66,7 @@ void EqnSet::printExpression() const{
 
     if(!equationVariable.empty()){
         timingLogger->info("equations:");
-        for(size_t num = 0; num < dpsPinNames.size(); num++){
+        for(size_t num = 0; num < equationVariable.size(); num++){
             timingLogger->info("{} = {}", equationVariable[num], expression[num]);
         }
     }

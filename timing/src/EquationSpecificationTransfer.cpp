@@ -33,6 +33,7 @@ void EquationSpecificationTransfer::printEqnSets() const{
             set->printSetNumber();
             set->printSetData();
             set->printSpecSets();
+            set->printExpression();
         }
     }
 }
