@@ -21,15 +21,6 @@ int main(int argc, char **argv) {
   yyparse();
   yyparseCleanup();
 
-  timingfile->pclk->printData();
-  timingfile->pclk->printPinList();
-  timingfile->clkr->printData();
-  timingfile->bwds->printPinList();
-  timingfile->bwds->printData();
-  timingfile->etds->printPinList();
-  timingfile->etds->printData();
-  timingfile->dcdt->printData();
-  timingfile->tsux->printData();
   for (const auto& eqsp : timingfile->eqsps) {
     // 访问 eqsp 指向的 EquationSpecificationTransfer 对象，并输出相关信息
     eqsp->printNumber();
