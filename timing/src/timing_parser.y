@@ -18,6 +18,8 @@ auto specset = std::make_shared<SpecSet>();
 auto wavetbl = std::make_shared<WaveTBL>();
 auto pinset = std::make_shared<PinSet>();
 auto logicalwaveform = std::make_shared<LogicalWaveform>();
+std::vector<std::string> edges;
+std::vector<std::string> actions;
 
 %}
 
@@ -31,13 +33,14 @@ auto logicalwaveform = std::make_shared<LogicalWaveform>();
 }
 
 %token <string> PCLK CLKR BWDS ETDS DCDT TSUX EQSP EQNSET SPECS NOOP hp93000
-%token <string> WAVETBL PINSIN PINSOUT STATEMAP TIMINGSET EQUATIONS CHECKALL SPECSET
+%token <string> WAVETBL STATEMAP PINS TIMINGSET EQUATIONS CHECKALL SPECSET
 %token <string> SPECNAME TACTUAL TMINIMUM TMAXIMUM UNITSCOMMENT
-%token <string> TDOUBLE TINTEGER TNEGDOUBLE TNEGINTEGER TIDENTIFIER TLITERAL
-%token <token> TCOMMA TLPAREN TRPAREN TMINUS TPLUS TDIV TCLT TCGT TQUESTION TCOLON TLBRACKET TRBRACKET TMUL TEQUAL THASH TAT
+%token <string> TDOUBLE TINTEGER TNEGDOUBLE TNEGINTEGER TIDENTIFIER TLITERAL EXPRESSION
+%token <token> TQUOTATION TCOMMA TLPAREN TRPAREN TCOLON TLBRACKET TRBRACKET TEQUAL THASH TAT
 
 %type <string> waveform_set timing_set period period_res ref_period wvf_set break_waveform_index definition_string default_name
-%type <string> spec_type eqspart equation_set_number equation_set_description spec_name spec_unit
+%type <string> spec_type eqspart equation_set_number equation_set_description spec_name spec_unit wavetbl_name pin_group
+%type <string> physical_waveform_number edge action waveform_name xNMode equationVariable
 %type <string> pin_name
 
 %start timing_file
@@ -147,14 +150,59 @@ eqsp_commands: eqsp_commands eqsp_command
 eqsp_command: EQNSET equation_set_number equation_set_description{
 	eqnset->setNumber(*$2,*$3);
 }
+	| WAVETBL wavetbl_name{
+		wavetbl->setName(*$2);
+	}
+	| PINS pin_group waveform_infos{
+		logicalwaveform->setGroup(*$2);
+
+		wavetbl->addWaveform(logicalwaveform);
+		logicalwaveform.reset();
+		logicalwaveform = std::make_shared<LogicalWaveform>();
+	}
+	| STATEMAP statemap_infos
 	| SPECS specs_parameters
-	| expression
+	| EQUATIONS equations
 	;
 
 spec_type: TIDENTIFIER;
 eqspart: TIDENTIFIER;
 equation_set_number: TINTEGER;
 equation_set_description: TLITERAL;
+wavetbl_name: TLITERAL;
+
+waveform_infos: waveform_infos waveform_info
+	| waveform_info
+	;
+waveform_info: physical_waveform_number TQUOTATION edges_actions TQUOTATION waveform_name{
+	logicalwaveform->addPinsData(*$1,edges,actions,*$5);
+};
+edges_actions: edges_actions edge_action
+	| edge_action
+	;
+edge_action: edge TCOLON action{
+	edges = std::vector<std::string>();
+	actions = std::vector<std::string>();
+
+	edges.push_back(*$1);
+	actions.push_back(*$3);
+};
+
+edge: TIDENTIFIER;
+action: TINTEGER
+	| TIDENTIFIER
+	;
+statemap_infos: statemap_infos statemap_info
+	| statemap_info
+	;
+statemap_info: physical_waveform_number waveform_name xNMode;
+
+pin_group: TIDENTIFIER;
+physical_waveform_number: TINTEGER;
+waveform_name: TINTEGER
+	| TIDENTIFIER
+	;
+xNMode: TIDENTIFIER;
 
 specs_parameters: specs_parameters specs_parameters
 	| specs_parameter
@@ -168,37 +216,12 @@ spec_unit: TIDENTIFIER;
 
 pin_name: TIDENTIFIER;
 
-expression: condition TQUESTION  expression TCOLON expression
-	| term pmterms
-	| term
+equations: equations equation
+	| equation
 	;
-condition: TLPAREN condition TRPAREN 
-	| expression TCGT expression
-	| expression TCLT expression
-	| expression
-	;
-term: factor mdfactors
-	| factor
-	;
-pmterms: pmterm pmterm
-	| pmterm
-	;
-mdfactors: TMUL factor
-	| TDIV factor
-	;
-factor: TLPAREN expression TRPAREN
-	| TMINUS TLPAREN expression TRPAREN
-	| TINTEGER
-	| TDOUBLE
-	| TPLUS TINTEGER
-	| TPLUS TDOUBLE
-	| TMINUS TINTEGER
-	| TMINUS TDOUBLE
-	| TPLUS TIDENTIFIER
-	| TMINUS TIDENTIFIER
-	;
-pmterm: TPLUS term
-	| TMINUS term
-	;
+equation: equationVariable TEQUAL EXPRESSION{
+	eqnset->addExpression(*$1,*$3);
+};
+equationVariable: TIDENTIFIER;
 
 %%
