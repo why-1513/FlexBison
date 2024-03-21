@@ -30,7 +30,7 @@ auto specset = std::make_shared<SpecSet>();
 %token <string> PSLV DRLV RCLV TERM CLMP LSUX EQSP EQNSET SPECS DPSPINS NOOP hp93000
 %token <string> LEVELSET PINSIN PINSOUT SPECSET SPECNAME TACTUAL TMINIMUM TMAXIMUM UNITSCOMMENT
 %token <string> TDOUBLE TINTEGER TNEGDOUBLE TNEGINTEGER TIDENTIFIER TLITERAL
-%token <token> TCOMMA TLPAREN TRPAREN TMINUS TLBRACKET TRBRACKET TMUL TEQUAL THASH TAT
+%token <token> TCOMMA TLPAREN TRPAREN TLBRACKET TRBRACKET TMUL TEQUAL THASH TAT
 
 %type <string> dps_No dps_set_id voltage source_current sink_current impedance setup_time level_set_no level_set_id
 %type <string> logic_0_level logic_1_level term_mode param_1 param_2 param_3 l_range h_range

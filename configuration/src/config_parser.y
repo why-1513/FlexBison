@@ -24,7 +24,7 @@ std::vector<std::string> pinlist;
 
 %token <string> DFPN DFPS PSTE CONF DFGP PSLC PSSL NOOP hp93000
 %token <string> TNEGINTEGER TNEGDOUBLE TIDENTIFIER TDOUBLE TINTEGER TLITERAL
-%token <token> TCOMMA TLPAREN TRPAREN TMINUS
+%token <token> TCOMMA TLPAREN TRPAREN
 
 %type <string> channel_no pinNo dps_channel polarity sites pin_type pin_oper_mode conf_context pin_group
 %type <string> pslc_value DCS_value min_voltage max_voltage max_source_current max_sink_current

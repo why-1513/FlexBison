@@ -55,8 +55,7 @@ void yyparseCleanup()
 -?[0-9]+\.[0-9]*		SAVE_TOKEN; return TNEGDOUBLE;
 -?[0-9]+				SAVE_TOKEN; return TNEGINTEGER;
 [a-zA-Z][a-zA-Z0-9_]*	SAVE_TOKEN; return TIDENTIFIER;
-\"(.*?)\"				SAVE_TOKEN; return TLITERAL;
-"-"						return TOKEN(TMINUS);
+\"([^\": ]*)\"			SAVE_TOKEN; puts(yytext); return TLITERAL;
 ","						return TOKEN(TCOMMA);
 "("						return TOKEN(TLPAREN);
 ")"						return TOKEN(TRPAREN);
