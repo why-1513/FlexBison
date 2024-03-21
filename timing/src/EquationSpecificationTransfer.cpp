@@ -51,7 +51,6 @@ void EquationSpecificationTransfer::printWaveTbls() const{
         for(const auto tbl : waveTbls){
             tbl->printWaveName();
             tbl->printWaveform();
-            tbl->printSpecSets();
         }
     }
 }
