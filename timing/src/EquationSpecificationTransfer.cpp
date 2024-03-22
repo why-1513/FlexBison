@@ -61,6 +61,7 @@ void EquationSpecificationTransfer::printTimingSets() const{
         for(const auto set : timingSets){
             set->printSetNumber();
             set->printSets();
+            set->printPeriod();
         }
     }
 }
