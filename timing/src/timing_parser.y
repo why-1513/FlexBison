@@ -40,7 +40,8 @@ std::vector<std::string> actions;
 
 %type <string> waveform_set timing_set period period_res ref_period wvf_set break_waveform_index definition_string default_name
 %type <string> spec_type eqspart equation_set_number equation_set_description spec_name spec_unit wavetbl_name pin_group
-%type <string> physical_waveform_number edge action waveform_name xNMode equationVariable
+%type <string> physical_waveform_number edge action waveform_name xNMode equationVariable timing_set_number timing_set_description
+%type <string> timingset_edge timingset_value timingset_period period_value specset_number specset_description setup_value minimum_value maximum_value
 %type <string> pin_name
 
 %start timing_file
@@ -163,6 +164,24 @@ eqsp_command: EQNSET equation_set_number equation_set_description{
 	| STATEMAP statemap_infos
 	| SPECS specs_parameters
 	| EQUATIONS equations
+	| TIMINGSET timing_set_number timing_set_description timing_set_content{
+		timingset->setNumber(*$2,*$3);
+	}
+	| PINS pin_group timingset_infos{
+		pinset->setGroup(*$2);
+
+		timingset->addPinSet(pinset);
+		pinset.reset();
+		pinset = std::make_shared<PinSet>();
+	}
+	| CHECKALL
+	| SPECSET specset_number specset_description specdatas{
+		specset->setNumber(*$2,*$3);
+
+		eqnset->addSpecSet(specset);
+		specset.reset();
+		specset = std::make_shared<SpecSet>();
+	}
 	;
 
 spec_type: TIDENTIFIER;
@@ -170,6 +189,19 @@ eqspart: TIDENTIFIER;
 equation_set_number: TINTEGER;
 equation_set_description: TLITERAL;
 wavetbl_name: TLITERAL;
+timing_set_number: TINTEGER;
+timing_set_description: TLITERAL
+	| TIDENTIFIER
+	;
+timing_set_content: timingset_period TEQUAL period_value{
+	timingset->setPeriod(*$3);
+};
+timingset_period: TIDENTIFIER;
+period_value: EXPRESSION
+	| TIDENTIFIER
+	| TINTEGER
+	| TDOUBLE
+	;
 
 waveform_infos: waveform_infos waveform_info
 	| waveform_info
@@ -211,9 +243,6 @@ specs_parameter: spec_name TLBRACKET spec_unit TRBRACKET{
 	eqnset->addSpecsData(*$1,*$3);
 };
 
-spec_name: TIDENTIFIER;
-spec_unit: TIDENTIFIER;
-
 pin_name: TIDENTIFIER;
 
 equations: equations equation
@@ -223,5 +252,55 @@ equation: equationVariable TEQUAL EXPRESSION{
 	eqnset->addExpression(*$1,*$3);
 };
 equationVariable: TIDENTIFIER;
+
+timingset_infos: timingset_infos timingset_info
+	| timingset_info
+	;
+timingset_info: timingset_edge TEQUAL timingset_value{
+	pinset->addPinsData(*$1,*$3);
+};
+timingset_edge: TIDENTIFIER;
+timingset_value: TIDENTIFIER
+	| TINTEGER
+	| TDOUBLE
+	| TNEGINTEGER
+	| TNEGDOUBLE
+	;
+
+specset_number: TINTEGER;
+specset_description: TLITERAL;
+specdatas: specdatas specdata
+	| specdata
+	;
+specdata: SPECNAME TACTUAL TMINIMUM TMAXIMUM UNITSCOMMENT
+	| spec_name setup_value TLBRACKET spec_unit TRBRACKET{
+		specset->addData(*$1,*$2,"unset","unset",*$4);
+	}
+	| spec_name setup_value minimum_value TLBRACKET spec_unit TRBRACKET{
+		specset->addData(*$1,*$2,*$3,"unset",*$5);
+	}
+	| spec_name setup_value minimum_value maximum_value TLBRACKET spec_unit TRBRACKET{
+		specset->addData(*$1,*$2,*$3,*$4,*$6);
+	}
+	;
+
+spec_name: TIDENTIFIER;
+spec_unit: TIDENTIFIER;
+
+setup_value: TINTEGER
+	| TDOUBLE
+	| TNEGINTEGER
+	| TNEGDOUBLE
+	;
+minimum_value: TINTEGER
+	| TDOUBLE
+	| TNEGINTEGER
+	| TNEGDOUBLE
+	;
+maximum_value: TINTEGER
+	| TDOUBLE
+	| TNEGINTEGER
+	| TNEGDOUBLE
+	;
 
 %%
