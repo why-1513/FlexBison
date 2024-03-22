@@ -1,0 +1,14 @@
+PINS  G1 G2A G2B C B A 
+DDC  dvc_1 
+0 0
+1 1
+X 2
+
+
+PINS  Y0 Y1 Y2 Y3 Y4 Y5 Y6 Y7 
+DDC  dvc_1 
+L 0
+H 1
+X 2
+
+

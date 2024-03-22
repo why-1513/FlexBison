@@ -1,0 +1,39 @@
+B2A Batch-mode Timing/Vector Translation
+Parsing Allvec binary vector  file : /home/demo/engineer/WHY/SN74LS138N/waste/vectors/Test24.binl
+
+ Pin configuration                 : /home/demo/engineer/WHY/SN74LS138N/configuration/pin 
+ Timing setup                      : /home/demo/engineer/WHY/SN74LS138N/timing/timing.bak 
+
+Starting b2a timing translation...
+Parsing pin file : /home/demo/engineer/WHY/SN74LS138N/configuration/pin
+Parsing  timing setup  file : /home/demo/engineer/WHY/SN74LS138N/timing/timing.bak
+  Creating wavetable database 
+  Creating equationset database 
+  Creating specificationset database 
+b2a timing translation finished !! 
+
+ Starting b2a vector translation...
+Writing  ASCII vectors  file 
+Test24:Scanning/Loading timing map file : Test24.tmf
+Test24:Loading SOC Binary Vector file /home/demo/engineer/WHY/SN74LS138N/waste/vectors/Test24.binl
+WARNING : 049 :Test24:Ignoring Firmware command SREC
+Test24: Finished loading Vector file
+Test24:Writing ./Test24.avc file 
+b2a vector translation finished !! 
+
+
+WARNING(S) generated while translation, please refer LOG file.
+------------------------------------------------------------------------------
+                                  SUMMARY
+------------------------------------------------------------------------------
+                                OUTPUT FILES
+
+VECTOR TRANSLATION : GENERAED FILE(S) 
+Test24.avc
+
+------------------------------------------------------------------------------
+WARNING(S) generated while translation
+
+WARNING : 049 : Ignoring Firmware command VCAT, DVCU, SDGC, SREC, DVVA & DIT
+------------------------------------------------------------------------------
+B2A Conversion finished
